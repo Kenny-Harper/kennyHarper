@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GeoNames Task</title>
+  <link rel="stylesheet" href="libs/css/style.css">
+</head>
+<body>
+  <h1>GeoNames Task</h1>
+  <p id="output">Ready…</p>
+  <p><em>All libraries are local. PHP returns JSON only. jQuery only updates existing elements.</em></p>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>API</th>
+        <th>Inputs</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Timezone row -->
+      <tr>
+        <td>timezone</td>
+        <td>
+          Lat <input id="tz-lat" value="51.5" size="6">
+          Lng <input id="tz-lng" value="-0.13" size="6">
+          <button id="btn-timezone">Get Timezone</button>
+        </td>
+        <td id="result-timezone">—</td>
+      </tr>
+
+      <!-- Wikipedia row -->
+      <tr>
+        <td>findNearbyWikipedia</td>
+        <td>
+          Lat <input id="wiki-lat" value="51.5" size="6">
+          Lng <input id="wiki-lng" value="-0.13" size="6">
+          <button id="btn-wiki">Find Nearby Wikipedia</button>
+        </td>
+        <td id="result-wiki">—</td>
+      </tr>
+
+      <!-- Earthquakes row -->
+      <tr>
+        <td>earthquakes</td>
+        <td>
+          North <input id="eq-north" value="44.1" size="6">
+          South <input id="eq-south" value="-9.9" size="6">
+          East <input id="eq-east" value="-22.4" size="6">
+          West <input id="eq-west" value="55.2" size="6">
+          <button id="btn-quakes">Get Earthquakes</button>
+        </td>
+        <td id="result-quakes">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Scripts -->
+  <script src="libs/js/jquery-3.7.1.min.js"></script>
+  <script src="libs/js/app.js"></script>
+</body>
+</html>
