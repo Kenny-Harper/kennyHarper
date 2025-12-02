@@ -1,10 +1,3 @@
-# KennyHarper – Portfolio Projects
-
-This repository contains my IT Career Switch portfolio projects.  
-Each project demonstrates different skills in PHP, JavaScript, AJAX, APIs, and frontend libraries.
-
----
-
 ## 📍 Project 1: Gazetteer
 
 A fully interactive, web-based **Gazetteer application** that provides **real-time information** about countries around the world. 
@@ -119,10 +112,5 @@ No local setup is required.
 
 ### ✈️ Airport & City Markers
 <img width="1918" height="877" alt="Cities and airport markers" src="https://github.com/user-attachments/assets/89003d91-d425-4eee-9ff8-e5e006dcde6a" />
-
----
-
-## 📌 Project 2
-(Coming soon)
 
 ---
