@@ -7,8 +7,6 @@ Each project demonstrates different skills in PHP, JavaScript, AJAX, APIs, and f
 
 ## 📍 Project 1: Gazetteer
 
-# Gazetteer Project
-
 A fully interactive, web-based **Gazetteer application** that provides **real-time information** about countries around the world. 
 
 The system brings together multiple data sources to display **weather**, **news**, **cities**, **airports**, **Wikipedia summaries**, **demographics**, and **currency exchange rates**.
