@@ -1,7 +1,9 @@
 # KennyHarper – Portfolio Projects
 
 This repository contains my portfolio projects for the IT Career Switch program.  
+
 Each project demonstrates practical skills in web development, including PHP, JavaScript, AJAX, APIs, and modern frontend libraries.  
+
 The goal of this collection is to showcase my ability to build interactive, data-driven applications from both backend and frontend perspectives.
 
 
