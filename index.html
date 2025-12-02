@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gazetteer - Country Profiles</title>
+
+<!-- Bootstrap CSS (local) -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+<!-- Leaflet CSS (local) -->
+<link rel="stylesheet" href="assets/css/leaflet.css">
+
+<!-- Leaflet MarkerCluster CSS (local) -->
+<link rel="stylesheet" href="assets/css/MarkerCluster.css">
+<link rel="stylesheet" href="assets/css/MarkerCluster.Default.css">
+
+<!-- Leaflet EasyButton CSS (local) -->
+<link rel="stylesheet" href="assets/css/easy-button.css">
+
+<!-- Leaflet ExtraMarkers CSS (local) -->
+<link rel="stylesheet" href="node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css">
+
+<!-- Font Awesome CSS (local) -->
+<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+<!-- Your custom styles -->
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Gazetteer</a>
+    <div>
+      <select class="form-select w-auto" id="countrySelect" aria-label="Country selection">
+        <option selected disabled>Select a country</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<div id="map">
+  <div class="loading-overlay" id="loading">
+    <div class="spinner-border text-primary loading-spinner"></div>
+    <p class="mt-3">Loading world map & detecting your location...</p>
+  </div>
+</div>
+
+<!-- Country Modal (kept) -->
+<div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="countryModalLabel">Country Information</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="countryDetails">Loading...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 MODALS (Demographics, Wiki, News, Currency, Weather) -->
+<!-- Demographics Modal -->
+<div class="modal fade" id="demographicsModal" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title"><i class="fa fa-users me-2"></i>Demographics</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Wiki Modal -->
+<div class="modal fade" id="wikiModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title"><i class="fa fa-book me-2"></i>Wikipedia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- News Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title"><i class="fa fa-newspaper me-2"></i>News</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Currency Modal -->
+<div class="modal fade" id="currencyModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title"><i class="fa fa-money-bill-wave me-2"></i>Currency</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Weather Modal -->
+<div class="modal fade" id="weatherModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="fa fa-cloud-sun me-2"></i>Weather</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts (all local) -->
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/leaflet.js"></script>
+<script src="node_modules/leaflet-extra-markers/dist/js/leaflet.extra-markers.js"></script>
+<script src="assets/js/leaflet.markercluster.js"></script>
+<script src="assets/js/leaflet.easybutton.js"></script> <!-- or easy-button.js if that's your filename -->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "leaflet-extra-markers": "^1.2.2"
+  }
+}
