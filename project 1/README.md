@@ -11,22 +11,52 @@ Designed as a modern **geographic information tool**, it allows users to explore
 
 ## 🚀 Features
 
-### 🌦️ Weather Information  
-Uses the **OpenWeather API** to fetch current weather conditions such as temperature, humidity, and general conditions.
+# 🌍 Interactive Map Interface
+Built with Leaflet.js for smooth map navigation
+Highlights the selected country using GeoJSON borders
+Supports marker clustering for cities and airports
+Uses custom icons via Leaflet.ExtraMarkers
 
-### 🗞️ Latest News  
-Integrates with **NewsData.io** to retrieve the latest news headlines related to a selected country.
+# 📍 Automatic Geolocation
+Detects the user’s location with the browser’s geolocation API
+Automatically selects and zooms to the user's current country
 
-### 🌍 GeoNames Data  
-Uses the **GeoNames API** to list:
-- Major cities  
-- Airports  
+# 🌆 Cities & Airports (GeoNames API)
+Displays major cities and airports on the map
+Each marker includes a popup with the location name
+Uses clustering for performance and cleaner visuals
 
-### 📖 Wikipedia Overview  
-Fetches an introductory summary from **Wikipedia REST API** for any selected country.
+# 🗺️ Country Information (REST Countries)
+Detailed demographics including:
+- Capital city
+- Continent
+- Population
+- Area
+- Languages
 
-### 💱 Currency Exchange Rates  
-Retrieves live exchange rates using multiple fallback APIs.
+# 🌦️ Weather Information
+Uses OpenWeather API to display:
+- Current temperature
+- Weather description
+- “Feels like” temperature
+- Weather icon
+
+# 🗞️ Latest News
+Retrieves real-time news headlines from NewsData.io, filtered by country.
+
+# 📖 Wikipedia Overview
+Fetches a concise country summary using the Wikipedia REST API
+with a direct link to the full article.
+
+# 💱 Currency Exchange Rates
+Uses multiple fallback APIs to ensure data reliability:
+- Shows live exchange rates
+- Includes a currency converter
+
+# 🧭 Modern UI with Modals (Bootstrap)
+Fully responsive "mobile-first" design
+Five modals: Demographics, Wiki, News, Currency, Weather
+Styled using Bootstrap 5 for a clean and consistent UI
 
 ---
 
