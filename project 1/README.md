@@ -121,7 +121,7 @@ No local setup is required.
 ---
 ## 📸 Screenshots
 
-### 🗺️ Map Interface
+### 🗺️ Country Map View (Geolocation, Cities & Airports)
 <img width="1919" height="877" alt="New main interface" src="https://github.com/user-attachments/assets/5bb260f9-ab2e-4ed4-a555-4e164752a4ea" />
 
 ### 📍 Country Dropdown
