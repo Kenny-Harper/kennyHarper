@@ -63,14 +63,14 @@ Styled using Bootstrap 5 for a clean and consistent UI
 ## 🧩 Technologies Used
 
 ### Frontend
-HTML5
-CSS3 (with Bootstrap 5 for responsive UI)
-JavaScript (ES6)
-jQuery for DOM manipulation & AJAX
-Leaflet.js for interactive maps
-Leaflet.markercluster for clustering markers
-Leaflet.ExtraMarkers for custom map icons
-Leaflet.easyButton for interactive map buttons
+HTML5,
+CSS3 (with Bootstrap 5 for responsive UI),
+JavaScript (ES6),
+jQuery for DOM manipulation & AJAX,
+Leaflet.js for interactive maps,
+Leaflet.markercluster for clustering markers,
+Leaflet.ExtraMarkers for custom map icons,
+Leaflet.easyButton for interactive map buttons.
 
 ### Backend
 PHP 8+
