@@ -11,22 +11,22 @@ Designed as a modern **geographic information tool**, it allows users to explore
 
 ## 🚀 Features
 
-# 🌍 Interactive Map Interface
+##  🌍 Interactive Map Interface
 Built with Leaflet.js for smooth map navigation
 Highlights the selected country using GeoJSON borders
 Supports marker clustering for cities and airports
 Uses custom icons via Leaflet.ExtraMarkers
 
-# 📍 Automatic Geolocation
+##  📍 Automatic Geolocation
 Detects the user’s location with the browser’s geolocation API
 Automatically selects and zooms to the user's current country
 
-# 🌆 Cities & Airports (GeoNames API)
+##  🌆 Cities & Airports (GeoNames API)
 Displays major cities and airports on the map
 Each marker includes a popup with the location name
 Uses clustering for performance and cleaner visuals
 
-# 🗺️ Country Information (REST Countries)
+##  🗺️ Country Information (REST Countries)
 Detailed demographics including:
 - Capital city
 - Continent
@@ -41,19 +41,19 @@ Uses OpenWeather API to display:
 - “Feels like” temperature
 - Weather icon
 
-# 🗞️ Latest News
+##  🗞️ Latest News
 Retrieves real-time news headlines from NewsData.io, filtered by country.
 
-# 📖 Wikipedia Overview
+##  📖 Wikipedia Overview
 Fetches a concise country summary using the Wikipedia REST API
 with a direct link to the full article.
 
-# 💱 Currency Exchange Rates
+##  💱 Currency Exchange Rates
 Uses multiple fallback APIs to ensure data reliability:
 - Shows live exchange rates
 - Includes a currency converter
 
-# 🧭 Modern UI with Modals (Bootstrap)
+##  🧭 Modern UI with Modals (Bootstrap)
 Fully responsive "mobile-first" design
 Five modals: Demographics, Wiki, News, Currency, Weather
 Styled using Bootstrap 5 for a clean and consistent UI
