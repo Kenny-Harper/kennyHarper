@@ -62,13 +62,33 @@ Styled using Bootstrap 5 for a clean and consistent UI
 
 ## 🧩 Technologies Used
 
-- **HTML5**
-- **CSS3**
-- **JavaScript**
-- **PHP** (server-side)
-- **cURL / file_get_contents**
-- **REST APIs**
-- **Leaflet.js** for interactive maps
+# Frontend
+HTML5
+CSS3 (with Bootstrap 5 for responsive UI)
+JavaScript (ES6)
+jQuery for DOM manipulation & AJAX
+Leaflet.js for interactive maps
+Leaflet.markercluster for clustering markers
+Leaflet.ExtraMarkers for custom map icons
+Leaflet.easyButton for interactive map buttons
+
+# Backend
+PHP 8+
+API integration using cURL and file_get_contents
+Custom REST-style PHP endpoints for data retrieval
+
+# External APIs
+GeoNames API – cities & airports
+OpenWeather API – weather data
+REST Countries API – country details
+NewsData.io API – latest news
+Wikipedia REST API – summaries
+Open Exchange Rates (with fallbacks) – currency conversion
+
+# Other Tools
+JSON for structured data
+Git / GitHub for version control
+InfinityFree for live hosting and deployment
 
 ---
 
