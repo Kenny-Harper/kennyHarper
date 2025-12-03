@@ -122,25 +122,25 @@ No local setup is required.
 ## 📸 Screenshots
 
 ### 🗺️ Main Interface
-<img width="1916" height="874" alt="Main interface" src="https://github.com/user-attachments/assets/6f07d3e8-8a1d-4a74-b499-11cfe2fa90e3" />
+<img width="1919" height="877" alt="New main interface" src="https://github.com/user-attachments/assets/5bb260f9-ab2e-4ed4-a555-4e164752a4ea" />
 
 ### 📍 Country Dropdown
-<img width="1918" height="876" alt="Country dropdown " src="https://github.com/user-attachments/assets/579e7820-8b93-4db8-970e-665c7fa2bb29" />
+<img width="1918" height="873" alt="country dropdown" src="https://github.com/user-attachments/assets/879bc3e9-98b3-4349-be20-453e72621b7a" />
 
 ### 📊 Demographics
-<img width="1918" height="880" alt="Demographics panel" src="https://github.com/user-attachments/assets/ffc81625-4ed0-4e2b-811c-dde08a92537e" />
+<img width="1918" height="876" alt="demographics" src="https://github.com/user-attachments/assets/b00846b6-c260-4bb0-aca0-24865a8922a8" />
 
 ### 📘 Wikipedia
-<img width="1917" height="881" alt="Wikipedia panel" src="https://github.com/user-attachments/assets/0b2394ff-8db1-4ed5-9f65-2cd1f3ac78f8" />
+<img width="1918" height="875" alt="Wikipedia" src="https://github.com/user-attachments/assets/d8cdc1e5-90d9-4891-b13b-72f6c4281bb0" />
 
 ### 📰 News Feed
-<img width="1917" height="876" alt="News feed" src="https://github.com/user-attachments/assets/84bf23c3-888b-472b-8661-cb67b5296378" />
+<img width="1918" height="878" alt="News" src="https://github.com/user-attachments/assets/128df06f-8640-4c2f-a8ac-89ffcff92153" />
 
 ### 💲 Currency Exchange 
-<img width="1915" height="880" alt="Currency exchange panel" src="https://github.com/user-attachments/assets/4f680533-883f-4314-b7e7-a43f4117e6e3" />
+<img width="1918" height="875" alt="currency exchange" src="https://github.com/user-attachments/assets/55bc521b-e4e3-411a-93a2-419a391888a2" />
 
 ### 🌦️ Weather
-<img width="1916" height="876" alt="Weather panel" src="https://github.com/user-attachments/assets/ce8d5ccb-c4fc-4ab2-933d-35d0d0b59618" />
+<img width="1918" height="876" alt="weather" src="https://github.com/user-attachments/assets/6f280b15-5bdf-4173-bc57-fd8eaa6771e6" />
 
 ### ✈️ Airport & City Markers
 <img width="1918" height="877" alt="Cities and airport markers" src="https://github.com/user-attachments/assets/89003d91-d425-4eee-9ff8-e5e006dcde6a" />
