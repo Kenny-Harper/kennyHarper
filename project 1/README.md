@@ -34,7 +34,7 @@ Detailed demographics including:
 - Area
 - Languages
 
-# 🌦️ Weather Information
+##  🌦️ Weather Information
 Uses OpenWeather API to display:
 - Current temperature
 - Weather description
