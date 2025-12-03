@@ -62,7 +62,7 @@ Styled using Bootstrap 5 for a clean and consistent UI
 
 ## 🧩 Technologies Used
 
-# Frontend
+### Frontend
 HTML5
 CSS3 (with Bootstrap 5 for responsive UI)
 JavaScript (ES6)
@@ -72,12 +72,12 @@ Leaflet.markercluster for clustering markers
 Leaflet.ExtraMarkers for custom map icons
 Leaflet.easyButton for interactive map buttons
 
-# Backend
+### Backend
 PHP 8+
 API integration using cURL and file_get_contents
 Custom REST-style PHP endpoints for data retrieval
 
-# External APIs
+### External APIs
 GeoNames API – cities & airports
 OpenWeather API – weather data
 REST Countries API – country details
@@ -85,7 +85,7 @@ NewsData.io API – latest news
 Wikipedia REST API – summaries
 Open Exchange Rates (with fallbacks) – currency conversion
 
-# Other Tools
+### Other Tools
 JSON for structured data
 Git / GitHub for version control
 InfinityFree for live hosting and deployment
