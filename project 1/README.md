@@ -46,7 +46,7 @@ Retrieves live exchange rates using multiple fallback APIs.
 
 Gazetteer/
 │
-├── api/                       # PHP backend API endpoints
+├── api/                                   # PHP backend API endpoints
 │   ├── border.php
 │   ├── countries.php
 │   ├── country.php
@@ -58,22 +58,54 @@ Gazetteer/
 │   └── wiki.php
 │
 ├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── images/
-│   │   └── airport-icon.png
-│   └── js/
-│       └── main.js
+│   ├── css/                                # All styling files
+│   │   ├── bootstrap.min.css
+│   │   ├── leaflet.css
+│   │   ├── MarkerCluster.css
+│   │   ├── MarkerCluster.Default.css
+│   │   ├── easy-button.css
+│   │   ├── leaflet.extra-markers.min.css   # For ExtraMarkers icons
+│   │   ├── all.min.css                     # Font Awesome icons
+│   │   └── style.css                       # Custom site styling
+│   │
+│   ├── js/                                 # All JavaScript files
+│   │   ├── jquery-3.6.0.min.js
+│   │   ├── bootstrap.bundle.min.js
+│   │   ├── leaflet.js
+│   │   ├── leaflet.markercluster.js
+│   │   ├── leaflet.extra-markers.js
+│   │   ├── leaflet.easybutton.js
+│   │   └── main.js                         # Main application logic
+│   │
+│   ├── images/                             # Default Leaflet icons + custom icons
+│   │   ├── airport-icon.png
+│   │   ├── marker-icon.png
+│   │   ├── marker-icon-2x.png
+│   │   ├── marker-shadow.png
+│   │   ├── layers.png
+│   │   └── layers-2x.png
+│   │
+│   ├── img/                                # ExtraMarkers required images
+│   │   ├── markers_default.png
+│   │   └── markers_shadow.png
+│   │
+│   └── webfonts/                           # Font Awesome webfonts
+│       ├── fa-solid-900.woff2
+│       ├── fa-solid-900.woff
+│       ├── fa-regular-400.woff2
+│       ├── fa-brands-400.woff2
+│       └── ... other Font Awesome font files
 │
 ├── data/
-│   └── countryBorders.geo.json
+│   └── countryBorders.geo.json              # World border GeoJSON
 │
 ├── logs/
-│   └── api_log.txt        # empty for security (full logs available if needed)
+│   └── api_log.txt                          # Empty for security (optional logging)
 │
-├── config_local.php       # private API keys (NOT included on GitHub)
+├── config.php                               # API keys + configuration (NOT public)
 │
-└── index.php              # main application page
+└── index.html                               # Main application page
+
 
 
 ---
