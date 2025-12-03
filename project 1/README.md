@@ -121,7 +121,7 @@ No local setup is required.
 ---
 ## 📸 Screenshots
 
-### 🗺️ Main Interface
+### 🗺️ Map Interface
 <img width="1919" height="877" alt="New main interface" src="https://github.com/user-attachments/assets/5bb260f9-ab2e-4ed4-a555-4e164752a4ea" />
 
 ### 📍 Country Dropdown
@@ -141,8 +141,5 @@ No local setup is required.
 
 ### 🌦️ Weather
 <img width="1918" height="876" alt="weather" src="https://github.com/user-attachments/assets/6f280b15-5bdf-4173-bc57-fd8eaa6771e6" />
-
-### ✈️ Airport & City Markers
-<img width="1918" height="877" alt="Cities and airport markers" src="https://github.com/user-attachments/assets/89003d91-d425-4eee-9ff8-e5e006dcde6a" />
 
 ---
