@@ -1,12 +1,67 @@
 $(document).ready(function () {
   console.log('Gazetteer loaded.');
+    
+    // Hide InfinityFree cache-buster query (?i=1) without reloading
+if (window.location.search === '?i=1') {
+  history.replaceState(null, '', window.location.pathname);
+}
 
-  // Initialize map
-  const map = L.map('map').setView([20, 0], 2);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  // ✅ Stop Chrome "Blocked aria-hidden..." warning by managing focus on show/hide
+const returnFocusMap = new WeakMap();
+
+document.querySelectorAll('.modal').forEach(modalEl => {
+  // Save what had focus before the modal opens
+  modalEl.addEventListener('show.bs.modal', () => {
+    returnFocusMap.set(modalEl, document.activeElement);
+  });
+
+  // Force focus OUT before Bootstrap sets aria-hidden=true
+  modalEl.addEventListener('hide.bs.modal', () => {
+    // blur whatever is focused inside the modal
+    if (modalEl.contains(document.activeElement)) {
+      document.activeElement.blur();
+    }
+    // move focus somewhere safe immediately
+    document.body.focus();
+  });
+
+  // After it's shown, move focus into the modal properly
+  modalEl.addEventListener('shown.bs.modal', () => {
+    const focusable = modalEl.querySelector(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    (focusable || modalEl).focus();
+  });
+
+  // Restore focus back to what opened it (nice accessibility)
+  modalEl.addEventListener('hidden.bs.modal', () => {
+    const prev = returnFocusMap.get(modalEl);
+    if (prev && typeof prev.focus === 'function') prev.focus();
+  });
+});
+
+$(document).on('hidden.bs.modal', '#demographicsModal', function () {
+  $('#demo-preload').removeClass('fadeOut');
+});
+
+// --- Base map layers (for switching) ---
+const streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© OpenStreetMap contributors'
+});
+
+const satellite = L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  {
     maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+    attribution: 'Tiles © Esri'
+  }
+);
+
+// Initialize map with a default base layer
+const map = L.map('map', {
+  layers: [streets]
+}).setView([20, 0], 2);
 
   // 🔹 Explicit icons – no Leaflet default guessing
 
@@ -46,17 +101,22 @@ $(document).ready(function () {
     console.log(pos);
     const coordinates = pos.coords;
      $.getJSON('api/countryCode.php', {lat:coordinates.latitude, lng:coordinates.longitude})
-    .done(countryCode => {
-      console.log(countryCode);
-      $('#countrySelect').val(countryCode['data']).change();
-     
-    })
-    .fail((jqxhr, status, err) => {
-      console.log(jqxhr);
-      console.error('Failed to get countryCode:', status, err);
-      $('#loading').html('<div class="text-danger">Failed to get country code</div>').show();
-    });
+  .done(countryCode => {
+    console.log(countryCode);
 
+    if (isApiError(countryCode) || !countryCode.data) {
+      console.error('countryCode.php error:', getApiError(countryCode, 'Invalid response'));
+      return; // user can still pick manually
+    }
+
+    $('#countrySelect').val(countryCode.data).change();
+  })
+  .fail((jqxhr, status, err) => {
+    console.log(jqxhr);
+    console.error('Failed to get countryCode:', status, err);
+    $('#loading').text('Failed to get country code').show();
+  });
+  
 
   });
 
@@ -66,6 +126,7 @@ $(document).ready(function () {
   let selectedCountryISO2 = null;
   let selectedCountryName = null;      // 🔸 NEW – for Wikipedia (country NAME)
   let userAutoSelectPending = null;
+  let firstCountryRendered = false;
 
   // Map ISO3 -> Country name (filled when we load countries)
   const iso3ToNameMap = {};            // 🔸 NEW
@@ -122,10 +183,17 @@ $(document).ready(function () {
   map.addLayer(citiesCluster);
   map.addLayer(airportsCluster);
 
-  L.control.layers(null, {
-    'Cities': citiesCluster,
-    'Airports': airportsCluster
-  }, { collapsed: false }).addTo(map);
+const baseMaps = {
+  'Streets': streets,
+  'Satellite': satellite
+};
+
+const overlayMaps = {
+  'Cities': citiesCluster,
+  'Airports': airportsCluster
+};
+
+L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
 
   // Utilities
   function escapeHtml(text) {
@@ -137,6 +205,27 @@ $(document).ready(function () {
   function hideLoading() {
     $('#loading').fadeOut(500);
   }
+
+  function formatDate(dateStr) {
+  if (!dateStr) return 'N/A';
+  const d = Date.parse(dateStr); // Date.js parse
+  if (!d || isNaN(d.getTime())) return 'N/A';
+  return d.toString('dd MMM yyyy'); // e.g. 13 Jan 2026
+}
+
+function formatNumber(n, fmt = '0,0') {
+  if (n === null || n === undefined || n === '' || isNaN(n)) return 'N/A';
+  return numeral(n).format(fmt);
+}
+
+  function isApiError(res) {
+  return res && typeof res === 'object' && res.error;
+}
+
+function getApiError(res, fallback) {
+  return (res && res.error) ? res.error : fallback;
+}
+
 
   function getIso2FromIso3(iso3) {
     console.log(iso3)
@@ -201,90 +290,137 @@ $(document).ready(function () {
 
   // Load countries dropdown
   $.getJSON('api/countries.php')
-    .done(countries => {
-      const $select = $('#countrySelect');
-      $select.find('option:not(:first)').remove();
+  .done(countries => {
 
-      countries.forEach(c => {
-        const code = (c.code || '').toUpperCase();
-        const name = c.name || 'Unknown';
-        if (code && code.length === 3) {
-          // 🔸 store mapping ISO3 -> name for Wikipedia
-          iso3ToNameMap[code] = name;
-          $select.append(`<option value="${code}">${escapeHtml(name)}</option>`);
-        }
-      });
+    if (isApiError(countries) || !Array.isArray(countries)) {
+      console.error('countries.php error:', getApiError(countries, 'Invalid countries list'));
+      $('#loading').text('Failed to load country list').show();
+      return;
+    }
 
-      console.log(`Dropdown ready: ${$select.find('option').length - 1} countries`);
+    const $select = $('#countrySelect');
+    $select.find('option:not(:first)').remove();
 
-      if (userAutoSelectPending && $select.find(`option[value="${userAutoSelectPending}"]`).length) {
-        console.log('Auto-selecting user country:', userAutoSelectPending);
-        $select.val(userAutoSelectPending).trigger('change');
+    countries.forEach(c => {
+      const code = (c.code || '').toUpperCase();
+      const name = c.name || 'Unknown';
+      if (code && code.length === 3) {
+        iso3ToNameMap[code] = name;
+        $select.append($('<option>').val(code).text(name));
       }
-      userAutoSelectPending = null;
-      hideLoading();
-    })
-    .fail((jqxhr, status, err) => {
-      console.error('Failed to load country list:', status, err);
-      $('#loading').html('<div class="text-danger">Failed to load country list</div>').show();
     });
 
-  // Country selection handler
-  $('#countrySelect').on('change', function () {
-    selectedCountryISO3 = $(this).val();
-    selectedCountryISO2 = getIso2FromIso3(selectedCountryISO3);
-    selectedCountryName = iso3ToNameMap[selectedCountryISO3] || null;   // 🔸 NEW – name for Wikipedia
+    console.log(`Dropdown ready: ${$select.find('option').length - 1} countries`);
 
-    if (!selectedCountryISO3) return;
+    if (userAutoSelectPending && $select.find(`option[value="${userAutoSelectPending}"]`).length) {
+      console.log('Auto-selecting user country:', userAutoSelectPending);
+      $select.val(userAutoSelectPending).trigger('change');
+    }
+    userAutoSelectPending = null;
+  })
+  .fail((jqxhr, status, err) => {
+    console.error('Failed to load country list:', status, err);
+    $('#loading').text('Failed to load country list').show();
+  });
 
-    console.log(
-      `Country selected: ${selectedCountryISO3} (ISO2: ${selectedCountryISO2}) Name: ${selectedCountryName}`
-    );
+// Country selection handler
+$('#countrySelect').on('change', function () {
+  selectedCountryISO3 = $(this).val();
+  selectedCountryISO2 = getIso2FromIso3(selectedCountryISO3);
+  selectedCountryName = iso3ToNameMap[selectedCountryISO3] || null;
+
+  // ✅ If News modal is currently open, refresh it for the new country
+  if (selectedCountryISO3 && $('#newsModal').hasClass('show')) {
+    loadModalContent('newsModal', selectedCountryISO3, selectedCountryISO2);
+  }
+
+  if (!selectedCountryISO3) return;
+
+  console.log(
+    `Country selected: ${selectedCountryISO3} (ISO2: ${selectedCountryISO2}) Name: ${selectedCountryName}`
+  );
 
     // Clear previous layers
     if (countryLayer) map.removeLayer(countryLayer);
     citiesCluster.clearLayers();
     airportsCluster.clearLayers();
 
-    // Fetch border
-    $.getJSON('api/border.php', { code: selectedCountryISO3 })
-      .done(feature => {
-        if (!feature || !feature.geometry) {
-          console.warn('No border geometry for', selectedCountryISO3);
-          return;
-        }
-        countryLayer = L.geoJSON(feature, {
-          style: { color: '#007bff', weight: 4, fillOpacity: 0.15 }
-        }).addTo(map);
-        map.fitBounds(countryLayer.getBounds(), { padding: [50, 50] });
+// Fetch border
+$.getJSON('api/border.php', { code: selectedCountryISO3 })
+  .done(feature => {
 
-        // Load cities & airports
-        $.getJSON('api/geonames.php', { country: selectedCountryISO3 })
-          .done(data => {
-            (data.cities || []).forEach(city => {
-              L.marker([city.lat, city.lng], { icon: cityIcon })
-                .bindPopup(escapeHtml(city.name))
-                .addTo(citiesCluster);
-            });
-            (data.airports || []).forEach(airport => {
-              L.marker([airport.lat, airport.lng], { icon: airportIcon })
-                .bindPopup(escapeHtml(airport.name))
-                .addTo(airportsCluster);
-            });
-            console.log(`Loaded ${data.cities.length} cities and ${data.airports.length} airports.`);
-          })
-          .fail(() => console.error('Failed to load GeoNames markers'));
-      })
-      .fail((jqxhr, status, err) => {
-        console.error('Failed to load border:', status, err);
-      });
+    if (isApiError(feature)) {
+      console.error('border.php error:', getApiError(feature, 'Border error'));
+      return;
+    }
+
+    if (!feature || !feature.geometry) {
+      console.warn('No border geometry for', selectedCountryISO3);
+      return;
+    }
+
+    countryLayer = L.geoJSON(feature, {
+      style: { color: '#007bff', weight: 4, fillOpacity: 0.15 }
+    }).addTo(map);
+
+    map.fitBounds(countryLayer.getBounds(), { padding: [50, 50] });
+
+    // Load cities & airports
+  $.getJSON('api/geonames.php', { country: selectedCountryISO3 })
+  .done(data => {
+
+    if (isApiError(data)) {
+      console.error('geonames.php error:', getApiError(data, 'GeoNames error'));
+
+      // don't crash — just hide loader so user isn’t stuck
+      if (!firstCountryRendered) {
+        hideLoading();
+        firstCountryRendered = true;
+      }
+      return;
+    }
+
+    (data.cities || []).forEach(city => {
+      L.marker([city.lat, city.lng], { icon: cityIcon })
+        .bindPopup(escapeHtml(city.name))
+        .addTo(citiesCluster);
+    });
+
+    (data.airports || []).forEach(airport => {
+      L.marker([airport.lat, airport.lng], { icon: airportIcon })
+        .bindPopup(escapeHtml(airport.name))
+        .addTo(airportsCluster);
+    });
+
+    if (!firstCountryRendered) {
+      hideLoading();
+      firstCountryRendered = true;
+    }
+  })
+  .fail(() => {
+    console.error('Failed to load GeoNames markers');
+
+    if (!firstCountryRendered) {
+      hideLoading();
+      firstCountryRendered = true;
+    }
   });
+
+  })
+  .fail((jqxhr, status, err) => {
+    console.error('Failed to load border:', status, err);
+
+    // (optional safety) hide loader if border fails on first load
+    if (!firstCountryRendered) {
+      hideLoading();
+      firstCountryRendered = true;
+    }
+  });
+  }); // <-- closes #countrySelect change handler
 
     // Modal content loader (5 modals)
   function loadModalContent(modalId, countryISO3, countryISO2) {
     const $modal = $(`#${modalId}`);
-    const $body = $modal.find('.modal-body');
-    $body.html('<div class="text-center"><div class="spinner-border" role="status"></div><p>Loading...</p></div>');
 
     const modalHandlers = {
       'demographicsModal': () => $.getJSON('api/country.php', { code: countryISO3 }),
@@ -294,261 +430,350 @@ $(document).ready(function () {
 
       'newsModal': () => $.getJSON('api/news.php', { country: countryISO2 }),
       'currencyModal': () => {
-        return $.getJSON('api/country.php', { code: countryISO3 })
-          .then(data => {
-            const currency = Object.keys(data[0]?.currencies || {})[0] || 'USD';
-            return $.getJSON('api/exchange.php', { currency });
-          });
-      },
+  return $.getJSON('api/country.php', { code: countryISO3 })
+    .then(countryData => {
+      const target = Object.keys(countryData[0]?.currencies || {})[0] || 'USD';
+
+      // base fixed to USD, selected = target currency (Argentina -> ARS)
+      return $.getJSON('api/exchange.php', { base: 'USD', currency: target });
+    });
+},
       'weatherModal': () => {
-        return $.getJSON('api/country.php', { code: countryISO3 })
-          .then(data => {
-            const latlng = data[0]?.capitalInfo?.latlng;
-            if (latlng && latlng.length === 2) {
-              return $.getJSON('api/weather.php', { lat: latlng[0], lng: latlng[1] });
-            }
-            return Promise.resolve({ main: {}, weather: [] });
-          });
+  return $.getJSON('api/country.php', { code: countryISO3 })
+    .then(data => {
+      const country = data[0] || {};
+
+      // ✅ capital name (used as label)
+      const capital = Array.isArray(country.capital)
+        ? (country.capital[0] || '')
+        : (country.capital || '');
+
+      // ✅ capital coordinates
+      const latlng = country.capitalInfo?.latlng;
+
+      if (latlng && latlng.length === 2) {
+        return $.getJSON('api/weather.php', {
+          lat: latlng[0],
+          lng: latlng[1],
+          label: capital   // ✅ THIS is the fix
+        });
       }
+
+      // fallback if no capital coords
+      return Promise.resolve({ location: capital || 'Weather', country: '', forecast: [] });
+    });
+}
     };
 
-    const handler = modalHandlers[modalId];
-    if (handler) {
-      handler()
-        .done(data => {
-          let content = '';
-          switch (modalId) {
-            case 'demographicsModal':
-              content = buildDemographicsContent(data);
-              break;
-            case 'wikiModal':
-              content = buildWikiContent(data);
-              break;
-            case 'newsModal':
-              content = buildNewsContent(data);
-              break;
-            case 'currencyModal':
-              content = buildCurrencyContent(data);
-              break;
-            case 'weatherModal':
-              content = buildWeatherContent(data);
-              break;
-            default:
-              content = '<p>Content not available</p>';
-          }
-          $body.html(content);
+const handler = modalHandlers[modalId];
 
-          // 🔹 After HTML is inserted, wire up the converter
-          if (modalId === 'currencyModal') {
-            attachCurrencyConverter(data);
-          }
-        })
-        .fail(() => {
-          $body.html('<div class="alert alert-warning">Failed to load data. Please try again.</div>');
-        });
-    }
+if (handler) {
 
-    // Bootstrap 5 modal
-    const bsModal = new bootstrap.Modal($modal[0]);
-    bsModal.show();
+  // ✅ 3A: show spinner overlay while weather is loading
+  if (modalId === 'weatherModal') {
+    $('#weather-preload').removeClass('fadeOut');
   }
+    
+  handler()
+    .then(data => {
+      switch (modalId) {
+        case 'demographicsModal':
+          populateDemographicsModal(data);
+          break;
 
+        case 'wikiModal':
+          populateWikiModal(data);
+          break;
+
+        case 'newsModal':
+          populateNewsModal(data);
+          break;
+
+        case 'currencyModal':
+          populateCurrencyModal(data);
+          break;
+
+        case 'weatherModal':
+          populateWeatherModal(data);
+          break;
+      }
+    })
+    .catch(() => {
+      // use .text() / .append() only (no HTML strings)
+      if (modalId === 'newsModal') {
+        $('#news-list')
+          .empty()
+          .append($('<p>').addClass('text-danger').text('Failed to load news.'));
+      } else if (modalId === 'wikiModal') {
+        $('#wiki-summary').text('Failed to load Wikipedia summary.');
+      } else if (modalId === 'currencyModal') {
+        $('#currency-rate').text('Failed to load currency rate.');
+        $('#currency-meta').text('');
+      } else if (modalId === 'weatherModal') {
+      $('#weather-preload').addClass('fadeOut');
+      $('#weatherModalLabel').text('Weather');
+      $('#todayConditions').text('Failed to load forecast.');
+      $('#todayIcon').attr('src', '');
+      $('#todayMaxTemp').text('—');
+      $('#todayMinTemp').text('—');
+      $('#day1Date, #day2Date').text('');
+      $('#day1Icon, #day2Icon').attr('src', '');
+      $('#day1MaxTemp, #day1MinTemp, #day2MaxTemp, #day2MinTemp').text('—');
+      $('#lastUpdated').text('—');
+      } else if (modalId === 'demographicsModal') {
+        $('#demo-capital, #demo-continent, #demo-population, #demo-area, #demo-languages').text('N/A');
+      }
+    });
+}
+
+// Bootstrap 5 modal
+const bsModal = bootstrap.Modal.getOrCreateInstance($modal[0]);
+bsModal.show();
+
+}
 
 // Demographics: now shows Capital + Continent + Population + Area + Languages
-function buildDemographicsContent(data) {
+function populateDemographicsModal(data) {
   const country = data[0] || {};
 
-  const population = country.population?.toLocaleString?.() || 'N/A';
-  const area = country.area?.toLocaleString?.() || 'N/A';
+  // show loader while filling
+  $('#demo-preload').removeClass('fadeOut');
 
-  // Capital can be an array (REST Countries v3) or a string
   const capital = Array.isArray(country.capital)
     ? (country.capital[0] || 'N/A')
     : (country.capital || 'N/A');
 
-  // Continent usually in `continents[0]`, fall back to `region`
-  const continentRaw = Array.isArray(country.continents)
-    ? (country.continents[0] || '')
-    : (country.region || '');
-  const continent = continentRaw || 'N/A';
+  const continent = Array.isArray(country.continents)
+    ? (country.continents[0] || 'N/A')
+    : (country.region || 'N/A');
 
-  const languages = Object.values(country.languages || {}).join(', ') || 'N/A';
+  const languages = country.languages
+    ? Object.values(country.languages).join(', ')
+    : 'N/A';
 
-  return `
-    <div class="row g-3 d-flex flex-column">
-      <div class="col-md-12 flex-grow-1"><strong>Capital:</strong> ${escapeHtml(capital)}</div>
-      <div class="col-md-12 flex-grow-1"><strong>Continent:</strong> ${escapeHtml(continent)}</div>
-      <div class="col-md-12 flex-grow-1"><strong>Population:</strong> ${population}</div>
-      <div class="col-md-12 flex-grow-1"><strong>Area:</strong> ${area} km²</div>
-      <div class="col-md-12 flex-grow-1"><strong>Languages:</strong> ${escapeHtml(languages)}</div>
-    </div>
-  `;
+  const currencyCode = country.currencies
+    ? (Object.keys(country.currencies)[0] || 'N/A')
+    : 'N/A';
+
+  // fill table cells (NEW ids)
+  $('#capitalCity').text(capital);
+  $('#continent').text(continent);
+  $('#languages').text(languages);
+  $('#currency').text(currencyCode);
+
+  // use your selected ISO vars
+  $('#isoAlpha2').text(selectedCountryISO2 || 'N/A');
+  $('#isoAlpha3').text(selectedCountryISO3 || 'N/A');
+
+  $('#population').text(formatNumber(country.population, '0,0'));
+  $('#areaInSqKm').text(formatNumber(country.area, '0,0'));
+
+  // hide loader
+  $('#demo-preload').addClass('fadeOut');
 }
 
-function buildWikiContent(data) {
-  // data comes from wiki.php: { wiki_url, extract }
-  const summary = (data.extract || '').trim();
-  const link = data.wiki_url || '#';
 
-  if (!summary) {
-    // If Wikipedia didn’t give us any text
-    return `
-      <p>No summary text was returned by Wikipedia for this country.</p>
-      <a href="${link}" target="_blank" class="btn btn-primary w-100">
-        Open full Wikipedia article
-      </a>
-    `;
-  }
-
-  return `
-    <p>${summary}</p>
-    <a href="${link}" target="_blank" class="btn btn-primary w-100">
-      Wikipedia Page
-    </a>
-  `;
+function populateWikiModal(data) {
+  $('#wiki-summary').text((data.extract || '').trim() || 'No summary available');
+  $('#wiki-link').attr('href', data.wiki_url || '#');
 }
 
-  function buildNewsContent(data) {
-    return (data.articles || []).slice(0, 5).map(a =>
-      `<div class="card mb-3 border-0 shadow-sm">
-        <div class="card-body p-3">
-          <h6 class="card-title mb-1">${escapeHtml(a.title)}</h6>
-          <div class="text-muted small mb-1">${escapeHtml(a.source?.name || a.source)} • ${new Date(a.publishedAt || a.published).toLocaleDateString()}</div>
-          <p class="small mb-2">${escapeHtml(a.description || '')}</p>
-          <a href="${a.url}" target="_blank" class="btn btn-sm btn-outline-primary">Read more</a>
-        </div>
-      </div>`
-    ).join('') || '<p class="text-muted">No recent news available</p>';
+function populateNewsModal(data) {
+  const $list = $('#news-list');
+  $list.empty();
+
+  const articles = (data.articles || []).slice(0, 5);
+
+  if (!articles.length) {
+    $list.append($('<p>').addClass('text-muted mb-0').text('No recent news available.'));
+    return;
   }
 
-  function buildCurrencyContent(data) {
-    // Backend gives: { rate, currency, source, timestamp }
-    const base = 'GBP'; // your PHP calculates 1 GBP = rate * CURRENCY
-    const currency = data.currency || 'USD';
-    const rateNum = parseFloat(data.rate);
-    const rateText = (rateNum && isFinite(rateNum)) ? rateNum.toFixed(2) : 'N/A';
+  articles.forEach((a, idx) => {
+    const title = a.title || 'Untitled';
+    const source = a.source?.name || a.source || 'Unknown source';
+    const url = a.url || '#';
 
-    const source = data.source || '';
-    const ts = data.timestamp || '';
+    // ✅ your API provides image_url + published
+    const imgUrl = a.image_url || '';
+    const published = formatDate(a.published); // uses your Date.js formatter
 
-    return `
-      <div class="text-center mb-3">
-        <h5 class="mb-1">Exchange rate</h5>
-        <p class="mb-0">
-          <strong>1 ${escapeHtml(base)}</strong>
-          ≈
-          <strong>${rateText} ${escapeHtml(currency)}</strong>
-        </p>
-        <small class="text-muted">
-          ${escapeHtml(source)}${ts ? ' • ' + escapeHtml(ts) : ''}
-        </small>
-      </div>
+    const $table = $('<table>').addClass('table table-borderless mb-0');
 
-      <hr>
+    // Row 1: image + title link
+    const $tr1 = $('<tr>');
+    const $imgTd = $('<td>').attr('rowspan', '2').attr('width', '50%');
 
-      <div>
-        <h6 class="mb-2">Convert currency</h6>
-        <div class="row g-2 align-items-center mb-2">
-          <div class="col-5">
-            <label for="currencyBaseAmount" class="form-label mb-1">${escapeHtml(base)} amount</label>
-            <input type="number" class="form-control" id="currencyBaseAmount" min="0" step="0.01" />
-          </div>
+    const finalImg = imgUrl || 'assets/images/news-placeholder.jpg';
 
-          <div class="col-2 text-center">
-            <label for="currencyDirection" class="form-label mb-1">Direction</label>
-            <select id="currencyDirection" class="form-select form-select-sm">
-              <option value="baseToTarget">${escapeHtml(base)} → ${escapeHtml(currency)}</option>
-              <option value="targetToBase">${escapeHtml(currency)} → ${escapeHtml(base)}</option>
-            </select>
-          </div>
+    $imgTd.append(
+      $('<img>')
+        .addClass('img-fluid rounded news-thumb')
+        .attr('src', finalImg)
+        .attr('alt', title)
+        // if the real image fails to load, fall back to placeholder
+        .on('error', function () {
+          $(this).attr('src', 'assets/images/news-placeholder.jpg');
+        })
+    );
 
-          <div class="col-5">
-            <label for="currencyTargetAmount" class="form-label mb-1">${escapeHtml(currency)} amount</label>
-            <input type="number" class="form-control" id="currencyTargetAmount" min="0" step="0.01" />
-          </div>
-        </div>
+    const $titleTd = $('<td>');
+    $titleTd.append(
+      $('<a>')
+        .addClass('fw-bold fs-6 text-black text-decoration-none')
+        .attr('href', url)
+        .attr('target', '_blank')
+        .text(title)
+    );
 
-        <small class="text-muted">
-          Type in the left field to convert ${escapeHtml(base)} to ${escapeHtml(currency)},
-          or switch direction to convert back.
-        </small>
-      </div>
-    `;
-  }
+    $tr1.append($imgTd, $titleTd);
 
-  function attachCurrencyConverter(data) {
-    const base = 'GBP';
-    const currency = data.currency || 'USD';
-    const rate = parseFloat(data.rate);
+    // Row 2: "Source • Date" like BBC
+    const $tr2 = $('<tr>');
+    const $metaTd = $('<td>').addClass('align-bottom pb-0');
 
-    if (!rate || !isFinite(rate)) {
-      console.warn('Invalid exchange rate:', data.rate);
-      return;
+    const metaText = `${source} • ${published}`;
+    $metaTd.append($('<p>').addClass('fw-light fs-6 mb-1').text(metaText));
+
+    $tr2.append($metaTd);
+
+    $table.append($tr1, $tr2);
+    $list.append($table);
+
+    if (idx !== articles.length - 1) {
+      $list.append($('<hr>'));
     }
+  });
+}
 
-    const $baseInput = $('#currencyBaseAmount');
-    const $targetInput = $('#currencyTargetAmount');
-    const $direction = $('#currencyDirection');
+function calcResult() {
+  const fromVal = parseFloat($('#fromAmount').val());
+  const rate = parseFloat($('#exchangeRate').val());
 
-    function recalc() {
-      const direction = $direction.val();
-
-      if (direction === 'baseToTarget') {
-        const baseVal = parseFloat($baseInput.val());
-        if (isNaN(baseVal)) {
-          $targetInput.val('');
-          return;
-        }
-        $targetInput.val((baseVal * rate).toFixed(2));
-      } else {
-        const targetVal = parseFloat($targetInput.val());
-        if (isNaN(targetVal)) {
-          $baseInput.val('');
-          return;
-        }
-        $baseInput.val((targetVal / rate).toFixed(2));
-      }
-    }
-
-    // When typing in base amount and direction is base -> target
-    $baseInput.on('input', () => {
-      if ($direction.val() === 'baseToTarget') recalc();
-    });
-
-    // When typing in target amount and direction is target -> base
-    $targetInput.on('input', () => {
-      if ($direction.val() === 'targetToBase') recalc();
-    });
-
-    // When changing direction, reset to 1 and recompute
-    $direction.on('change', () => {
-      $baseInput.val('1');
-      recalc();
-    });
-
-    // Initialise with 1 unit
-    $baseInput.val('1');
-    $direction.val('baseToTarget');
-    recalc();
+  if (!isFinite(fromVal) || !isFinite(rate)) {
+    $('#toAmount').val('');
+    return;
   }
 
-  function buildWeatherContent(data) {
-    const temp = data.main?.temp !== undefined ? Math.round(data.main.temp) + '°C' : 'N/A';
-    const feelsLike = data.main?.feels_like !== undefined ? Math.round(data.main.feels_like) + '°C' : 'N/A';
-    const desc = data.weather?.[0]?.description || 'N/A';
-    const icon = data.weather?.[0]?.icon;
+  $('#toAmount').val(numeral(fromVal * rate).format("0,0.00"));
+}
 
-    return `
-      <div class="text-center py-4">
-        <h2 class="text-primary">${temp}</h2>
-        <p class="lead text-capitalize">${desc}</p>
-        ${icon ? `<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon" style="width: 80px;">` : ''}
-        <div class="mt-3">
-          <small class="text-muted">Feels like: ${feelsLike}</small>
-        </div>
-      </div>
-    `;
+function populateCurrencyModal(data) {
+  // Expected from exchange.php:
+  // { base, selected, rates: [{code,name,rate}], source, timestamp }
+
+  const base = data?.base || 'USD';
+  const selected = data?.selected || 'USD';
+  const rates = Array.isArray(data?.rates) ? data.rates : [];
+
+  // Set "From USD"
+  $('#fromLabel').text(`From ${base}`);
+
+  // Build dropdown
+  const $select = $('#exchangeRate');
+  $select.empty();
+
+  rates.forEach(r => {
+    const code = (r.code || '').toUpperCase();
+    const name = r.name || code;
+    const rate = parseFloat(r.rate);
+
+    if (!code || !isFinite(rate)) return;
+
+    $select.append(
+      $('<option>')
+        .val(rate)
+        .attr('data-code', code)
+        .text(name)
+    );
+  });
+
+  // Select the country currency (Argentina -> ARS)
+  const $opt = $select.find(`option[data-code="${selected}"]`);
+  if ($opt.length) {
+    $opt.prop('selected', true);
+  } else {
+    $select.prop('selectedIndex', 0);
   }
+
+  // Meta
+const ts = data?.timestamp
+  ? Date.parse(data.timestamp).toString("dS MMM yyyy")
+  : '';
+
+const meta = `${data?.source || ''}${ts ? ' • ' + ts : ''}`;
+$('#currency-meta').text(meta.trim());
+
+  // Init
+  $('#fromAmount').val(1);
+  calcResult();
+}
+
+// Bind currency events ONCE
+(function bindCurrencyEventsOnce() {
+  let bound = false;
+
+  $(document).on('shown.bs.modal', '#currencyModal', function () {
+    if (bound) return;
+    bound = true;
+
+    $('#fromAmount').on('keyup change', calcResult);
+    $('#exchangeRate').on('change', calcResult);
+  });
+
+  $(document).on('hidden.bs.modal', '#currencyModal', function () {
+    $('#fromAmount').val(1);
+    $('#toAmount').val('');
+  });
+})();
+
+function populateWeatherModal(data) {
+  $('#weather-preload').addClass('fadeOut');
+
+  const title = (data.location && data.country)
+    ? `${data.location}, ${data.country}`
+    : 'Weather';
+
+  $('#weatherModalLabel').text(title);
+
+  const forecast = Array.isArray(data.forecast) ? data.forecast : [];
+
+  if (forecast.length < 3) {
+    $('#todayConditions').text('No forecast available');
+    $('#todayIcon').attr('src', '');
+    $('#todayMaxTemp').text('—');
+    $('#todayMinTemp').text('—');
+
+    $('#day1Date, #day2Date').text('');
+    $('#day1Icon, #day2Icon').attr('src', '');
+    $('#day1MaxTemp, #day1MinTemp, #day2MaxTemp, #day2MinTemp').text('—');
+
+    $('#lastUpdated').text(data.lastUpdated ? formatDate(data.lastUpdated) : '—');
+    return;
+  }
+
+  // Today
+  $('#todayConditions').text(forecast[0].conditionText || '');
+  $('#todayIcon').attr('src', forecast[0].conditionIcon || '');
+  $('#todayMaxTemp').text(forecast[0].maxC ?? '—');
+  $('#todayMinTemp').text(forecast[0].minC ?? '—');
+
+  // Day 1
+  $('#day1Date').text(Date.parse(forecast[1].date).toString("ddd dS"));
+  $('#day1Icon').attr('src', forecast[1].conditionIcon || '');
+  $('#day1MaxTemp').text(forecast[1].maxC ?? '—');
+  $('#day1MinTemp').text(forecast[1].minC ?? '—');
+
+  // Day 2
+  $('#day2Date').text(Date.parse(forecast[2].date).toString("ddd dS"));
+  $('#day2Icon').attr('src', forecast[2].conditionIcon || '');
+  $('#day2MaxTemp').text(forecast[2].maxC ?? '—');
+  $('#day2MinTemp').text(forecast[2].minC ?? '—');
+
+  $('#lastUpdated').text(
+    data.lastUpdated ? Date.parse(data.lastUpdated).toString("HH:mm, dS MMM") : '—'
+  );
+}
 
   function reverseGeocode(lat, lng, cb) {
     $.getJSON('api/geocode.php', { lat, lng })
