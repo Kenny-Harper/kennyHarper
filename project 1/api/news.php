@@ -55,8 +55,17 @@ echo json_encode([
             'source' => $article['source_id'] ?? $article['creator'] ?? 'Unknown',
             'url' => $article['link'] ?? '#',
             'published' => $article['pubDate'] ?? '',
-            'description' => substr($article['description'] ?? $article['content'] ?? '', 0, 100) . '...',
-            'image_url' => $article['image'] ?? null,
+            'description' => substr(
+                $article['description'] ?? $article['content'] ?? '',
+                0,
+                100
+            ) . '...',
+            // ✅ improved image fallback chain
+            'image_url' =>
+                $article['image_url']
+                ?? $article['image']
+                ?? $article['media_url']
+                ?? null,
             'country' => $article['country'] ?? [],
             'category' => $article['category'] ?? []
         ];
