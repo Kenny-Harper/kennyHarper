@@ -12,51 +12,65 @@ Designed as a modern **geographic information tool**, it allows users to explore
 ## 🚀 Features
 
 ###   🌍 Interactive Map Interface
-Built with Leaflet.js for smooth map navigation
-Highlights the selected country using GeoJSON borders
-Supports marker clustering for cities and airports
-Uses custom icons via Leaflet.ExtraMarkers
+- Built with Leaflet.js for smooth map navigation
+- Highlights the selected country using GeoJSON borders
+- Supports marker clustering for cities and airports
+- Uses custom icons via Leaflet.ExtraMarkers
+- Layer controls for Streets / Satellite and Cities / Airports
 
 ###   📍 Automatic Geolocation
-Detects the user’s location with the browser’s geolocation API
-Automatically selects and zooms to the user's current country
+- Detects the user’s location with the browser’s geolocation API
+- Automatically selects and zooms to the user's current country
 
 ###   🌆 Cities & Airports (GeoNames API)
-Displays major cities and airports on the map
-Each marker includes a popup with the location name
-Uses clustering for performance and cleaner visuals
+- Displays major cities and airports on the map
+- Each marker includes a popup with the location name
+- Uses clustering for performance and cleaner visuals
 
 ###   🗺️ Country Information (REST Countries)
 Detailed demographics including:
 - Capital city
 - Continent
-- Population
-- Area
+- Population (formatted using Numeral.js)
+- Area (km²)
 - Languages
+- ISO Alpha-2 and Alpha-3 codes
 
 ###   🌦️ Weather Information
-Uses OpenWeather API to display:
-- Current temperature
-- Weather description
-- “Feels like” temperature
-- Weather icon
+- Uses the OpenWeather API to display weather for the capital city
+- Shows temperature, min/max values, conditions, and icons
+- Includes clearly formatted “last updated” timestamps
+- Provides graceful fallbacks when weather data is unavailable
 
 ###   🗞️ Latest News
-Retrieves real-time news headlines from NewsData.io, filtered by country.
+- Fetches real-time headlines using NewsData.io
+- Articles are filtered by country
+- Displays article images, sources, and publication dates
+- Dates formatted using Date.js for readability
 
 ###   📖 Wikipedia Overview
-Fetches a concise country summary using the Wikipedia REST API
-with a direct link to the full article.
+- Retrieves concise summaries via the Wikipedia REST API
+- Uses the country name (not ISO codes) for accurate results
+- Includes a direct link to the full Wikipedia article
 
 ###   💱 Currency Exchange Rates
-Uses multiple fallback APIs to ensure data reliability:
-- Shows live exchange rates
-- Includes a currency converter
+- Displays live currency exchange rates with automatic country matching
+- Base currency fixed to USD for consistency
+- Target currency selected based on the chosen country
+- Includes a built-in currency converter
+- Uses fallback APIs to ensure reliability
 
 ###   🧭 Modern UI with Modals (Bootstrap)
-Fully responsive "mobile-first" design
-Five modals: Demographics, Wiki, News, Currency, Weather
-Styled using Bootstrap 5 for a clean and consistent UI
+Built with Bootstrap 5 for a clean, responsive design
+Five interactive modals:
+
+- Demographics
+- Wikipedia
+- News
+- Currency
+- Weather
+
+Mobile-first layout with accessibility-friendly focus handling
 
 ---
 
@@ -71,6 +85,8 @@ Leaflet.js for interactive maps,
 Leaflet.markercluster for clustering markers,
 Leaflet.ExtraMarkers for custom map icons,
 Leaflet.easyButton for interactive map buttons.
+Date.js
+Numeral.js
 
 ### Backend
 PHP 8+,
@@ -108,38 +124,51 @@ Gazetteer/
 │   └── wiki.php
 │
 ├── assets/
-│   ├── css/                                # All styling files
+│   ├── css/                               # All styling files
 │   │   ├── bootstrap.min.css
 │   │   ├── leaflet.css
 │   │   ├── MarkerCluster.css
 │   │   ├── MarkerCluster.Default.css
 │   │   ├── easy-button.css
-│   │   ├── leaflet.extra-markers.min.css   # For ExtraMarkers icons
-│   │   ├── all.min.css                     # Font Awesome icons
-│   │   └── style.css                       # Custom site styling
+│   │   ├── leaflet.extra-markers.min.css  # ExtraMarkers styling
+│   │   ├── all.min.css                    # Font Awesome icons
+│   │   ├── fontawesome.min.css            # Font Awesome core styles
+│   │   └── style.css                      # Custom site styling
 │   │
-│   ├── js/                                 # All JavaScript files
+│   ├── js/                                # All JavaScript files
 │   │   ├── jquery-3.6.0.min.js
 │   │   ├── bootstrap.bundle.min.js
 │   │   ├── leaflet.js
 │   │   ├── leaflet.markercluster.js
 │   │   ├── leaflet.extra-markers.js
 │   │   ├── leaflet.easybutton.js
-│   │   └── main.js                         # Main application logic
+│   │   ├── all.min.js                     # Font Awesome JS
+│   │   ├── date.min.js                    # Date formatting library
+│   │   ├── numeral.min.js                 # Number formatting library
+│   │   └── main.js                        # Main application logic
 │   │
-│   ├── images/                             # Default Leaflet icons + custom icons
+│   ├── images/                            # Default Leaflet icons + custom images
 │   │   ├── airport-icon.png
 │   │   ├── marker-icon.png
 │   │   ├── marker-icon-2x.png
 │   │   ├── marker-shadow.png
 │   │   ├── layers.png
-│   │   └── layers-2x.png
+│   │   ├── layers-2x.png
+│   │   └── news-placeholder.png           # Fallback image for news articles
 │   │
-│   ├── img/                                # ExtraMarkers required images
+│   ├── img/                               # ExtraMarkers required images
 │   │   ├── markers_default.png
-│   │   └── markers_shadow.png
+│   │   ├── markers_shadow.png
+│   │   ├── markers_default@2x.png
+│   │   └── markers_shadow@2x.png
 │   │
-│   └── webfonts/                           # Font Awesome webfonts
+│   ├── favicon/                           # Site favicons
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   └── favicon.ico
+│   │
+│   └── webfonts/                          # Font Awesome webfonts
 │       ├── fa-solid-900.woff2
 │       ├── fa-solid-900.woff
 │       ├── fa-regular-400.woff2
@@ -147,14 +176,14 @@ Gazetteer/
 │       └── ... other Font Awesome font files
 │
 ├── data/
-│   └── countryBorders.geo.json              # World border GeoJSON
+│   └── countryBorders.geo.json             # World border GeoJSON
 │
 ├── logs/
-│   └── api_log.txt                          # Empty for security (optional logging)
+│   └── api_log.txt                         # Empty for security (optional logging)
 │
-├── config.php                               # API keys + configuration (NOT public)
+├── config.php                              # API keys + configuration (NOT public)
 │
-└── index.html                               # Main application page
+└── index.html                              # Main application page
 
 
 
