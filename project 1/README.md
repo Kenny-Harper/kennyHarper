@@ -164,7 +164,7 @@ Gazetteer/
 
 🔗 Live Demo:
 
-https://kennyharper.wuaze.com/?i=1
+[https://kennyharper.wuaze.com/](https://kennyharper.wuaze.com/project1/)
 
 No local setup is required.
 
