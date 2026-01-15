@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gazetteer - Country Profiles</title>
+<title>Gazetteer</title>
+
+<!-- Favicons -->
+<link rel="icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 
 <!-- Bootstrap CSS (local) -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -19,26 +26,21 @@
 <link rel="stylesheet" href="assets/css/easy-button.css">
 
 <!-- Leaflet ExtraMarkers CSS (local) -->
-<link rel="stylesheet" href="node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css">
+<link rel="stylesheet" href="assets/css/leaflet.extra-markers.min.css">
 
 <!-- Font Awesome CSS (local) -->
-<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="assets/css/all.min.css">
 
 <!-- Your custom styles -->
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Gazetteer</a>
-    <div>
-      <select class="form-select w-auto" id="countrySelect" aria-label="Country selection">
-        <option selected disabled>Select a country</option>
-      </select>
-    </div>
-  </div>
-</nav>
+<span id="selectContainer">
+  <select class="form-select shadow-sm" id="countrySelect" aria-label="Country selection">
+    <option selected disabled>Select a country</option>
+  </select>
+</span>
 
 <div id="map">
   <div class="loading-overlay" id="loading">
@@ -65,13 +67,90 @@
 <!-- 5 MODALS (Demographics, Wiki, News, Currency, Weather) -->
 <!-- Demographics Modal -->
 <div class="modal fade" id="demographicsModal" tabindex="-1">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header bg-info text-white">
-        <h5 class="modal-title"><i class="fa fa-users me-2"></i>Demographics</h5>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content shadow">
+
+      <div class="modal-header bg-success bg-gradient text-white">
+        <h5 class="modal-title">
+          <i class="fa-solid fa-circle-info fa-xl me-2"></i>Demographics
+        </h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body"></div>
+
+      <div class="modal-body demo-body">
+        <div id="demo-preload"></div>
+
+        <table class="table table-striped mb-0">
+          <tr>
+            <td class="text-center col-2">
+              <i class="fa-solid fa-landmark-flag fa-xl text-success"></i>
+            </td>
+            <td class="text-nowrap">Capital city</td>
+            <td id="capitalCity" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-globe fa-xl text-success"></i>
+            </td>
+            <td>Continent</td>
+            <td id="continent" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-ear-listen fa-xl text-success"></i>
+            </td>
+            <td>Languages</td>
+            <td id="languages" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-coins fa-xl text-success"></i>
+            </td>
+            <td>Currency</td>
+            <td id="currency" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-equals fa-xl text-success"></i>
+            </td>
+            <td class="text-nowrap">ISO alpha 2</td>
+            <td id="isoAlpha2" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-bars fa-xl text-success"></i>
+            </td>
+            <td class="text-nowrap">ISO alpha 3</td>
+            <td id="isoAlpha3" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-person fa-xl text-success"></i>
+            </td>
+            <td>Population</td>
+            <td id="population" class="text-end"></td>
+          </tr>
+
+          <tr>
+            <td class="text-center">
+              <i class="fa-solid fa-ruler-combined fa-xl text-success"></i>
+            </td>
+            <td class="text-nowrap">Area (km<sup>2</sup>)</td>
+            <td id="areaInSqKm" class="text-end"></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+
     </div>
   </div>
 </div>
@@ -81,61 +160,184 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-warning text-dark">
-        <h5 class="modal-title"><i class="fa fa-book me-2"></i>Wikipedia</h5>
+        <h5 class="modal-title">
+          <i class="fa fa-book me-2"></i>Wikipedia
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <p id="wiki-summary" class="mb-3">—</p>
+        <a id="wiki-link" href="#" target="_blank" class="btn btn-primary w-100">
+          Open Wikipedia article
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- News Modal -->
 <div class="modal fade" id="newsModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title"><i class="fa fa-newspaper me-2"></i>News</h5>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content shadow">
+      <div class="modal-header bg-danger bg-gradient text-white">
+        <h5 class="modal-title">BREAKING NEWS</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body"></div>
+      <div class="modal-body">
+        <div id="news-list">
+          <p class="text-muted mb-0">No news loaded.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Currency Modal -->
-<div class="modal fade" id="currencyModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-success text-white">
-        <h5 class="modal-title"><i class="fa fa-money-bill-wave me-2"></i>Currency</h5>
+<div class="modal fade" id="currencyModal" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false">
+  <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content shadow">
+
+      <div class="modal-header bg-secondary bg-gradient text-white">
+        <h5 class="modal-title">Currency calculator</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body"></div>
+
+      <div class="modal-body">
+        <form>
+
+          <div class="form-floating mb-3">
+            <input id="fromAmount" type="number" class="form-control" value="1" min="1" step="1">
+            <label id="fromLabel">From USD</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select id="exchangeRate" class="form-select"></select>
+            <label for="exchangeRate">Convert to</label>
+          </div>
+
+          <div class="form-floating">
+            <input id="toAmount" type="text" class="form-control" disabled>
+            <label for="toAmount">Result</label>
+          </div>
+
+          <div class="mt-2 text-center">
+            <small id="currency-meta" class="text-muted"></small>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">CLOSE</button>
+      </div>
+
     </div>
   </div>
 </div>
 
 <!-- Weather Modal -->
-<div class="modal fade" id="weatherModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title"><i class="fa fa-cloud-sun me-2"></i>Weather</h5>
+<div class="modal fade" id="weatherModal" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false"
+  aria-labelledby="weatherModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content shadow">
+
+      <div class="modal-header bg-primary bg-gradient text-white">
+        <h5 class="modal-title" id="weatherModalLabel">Weather</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="modal-body"></div>
+
+      <div class="modal-body weather-body">
+        <div id="weather-preload"></div>
+
+        <!-- TODAY -->
+        <div class="row">
+          <div class="col border mt-1 ms-3 me-3 mb-2 rounded">
+            <p class="fw-bold fs-6 mt-1 mb-2">TODAY</p>
+
+            <div class="row align-items-center">
+              <div class="col text-center">
+                <p id="todayConditions" class="fw-bold fs-6 mt-3 mb-0"></p>
+              </div>
+
+              <div class="col text-center">
+                <img id="todayIcon" class="img-fluid" src="" alt="">
+              </div>
+
+              <div class="col text-center">
+                <p class="fw-bold fs-4 mb-0">
+                  <span id="todayMaxTemp">—</span><sup>o</sup><span class="tempMetric">c</span>
+                </p>
+                <p class="fs-5 mt-0 text-secondary">
+                  <span id="todayMinTemp">—</span><sup>o</sup><span class="tempMetric">c</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEXT 2 DAYS -->
+        <div class="row">
+          <div class="col border mt-2 ms-3 me-1 mb-0 rounded">
+            <div class="row">
+              <div class="col text-center">
+                <p id="day1Date" class="fw-bold fs-6 mt-3"></p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col text-center">
+                <img id="day1Icon" class="img-fluid" src="" alt="">
+              </div>
+              <div class="col text-center">
+                <p class="fw-bold fs-4 mb-0"><span id="day1MaxTemp">—</span><sup>o</sup>c</p>
+                <p class="fs-5 mt-0 text-secondary"><span id="day1MinTemp">—</span><sup>o</sup>c</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col border mt-2 ms-1 me-3 mb-0 rounded">
+            <div class="row">
+              <div class="col text-center">
+                <p id="day2Date" class="fw-bold fs-6 mt-3"></p>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col text-center">
+                <img id="day2Icon" class="img-fluid" src="" alt="">
+              </div>
+              <div class="col text-center">
+                <p class="fw-bold fs-4 mb-0"><span id="day2MaxTemp">—</span><sup>o</sup>c</p>
+                <p class="fs-5 mt-0 text-secondary"><span id="day2MinTemp">—</span><sup>o</sup>c</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <p class="fs-6 fw-light mb-0">
+          Last updated <span id="lastUpdated">—</span>. Powered by OpenWeather.
+        </p>
+      </div>
+
     </div>
   </div>
 </div>
 
 <!-- Scripts (all local) -->
 <script src="assets/js/jquery-3.6.0.min.js"></script>
-<script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+<script src="assets/js/all.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/leaflet.js"></script>
-<script src="node_modules/leaflet-extra-markers/dist/js/leaflet.extra-markers.js"></script>
+<script src="assets/js/leaflet.extra-markers.js"></script>
 <script src="assets/js/leaflet.markercluster.js"></script>
 <script src="assets/js/leaflet.easybutton.js"></script> 
+<script src="assets/js/date.min.js"></script>
+<script src="assets/js/numeral.min.js"></script>
 <script src="assets/js/main.js"></script>
 
 </body>
