@@ -201,24 +201,24 @@ No local setup is required.
 ## 📸 Screenshots
 
 ### 🗺️ Map Interface 
-<img width="1919" height="877" alt="New main interface" src="https://github.com/user-attachments/assets/5bb260f9-ab2e-4ed4-a555-4e164752a4ea" />
+<img width="376" height="798" alt="Map interface mobile view" src="https://github.com/user-attachments/assets/e3b2a01a-a0bd-41dc-9240-6c15462839d9" />
 
 ### 📍 Country Dropdown
-<img width="1918" height="873" alt="country dropdown" src="https://github.com/user-attachments/assets/879bc3e9-98b3-4349-be20-453e72621b7a" />
+<img width="376" height="815" alt="Country dropdown mobile view" src="https://github.com/user-attachments/assets/842ad167-7d60-4b15-a459-e08910e93709" />
 
 ### 📊 Demographics
-<img width="1918" height="876" alt="demographics" src="https://github.com/user-attachments/assets/b00846b6-c260-4bb0-aca0-24865a8922a8" />
+<img width="377" height="814" alt="Demographics mobile view" src="https://github.com/user-attachments/assets/0d9fe139-66d3-4035-a48a-1de377bb3597" />
 
 ### 📘 Wikipedia
-<img width="1918" height="875" alt="Wikipedia" src="https://github.com/user-attachments/assets/d8cdc1e5-90d9-4891-b13b-72f6c4281bb0" />
+<img width="376" height="812" alt="Wiki mobile view" src="https://github.com/user-attachments/assets/b2de51f8-ce0f-4923-b6dd-f52d8d023030" />
 
 ### 📰 News Feed
-<img width="1918" height="878" alt="News" src="https://github.com/user-attachments/assets/128df06f-8640-4c2f-a8ac-89ffcff92153" />
+<img width="376" height="814" alt="News mobile view" src="https://github.com/user-attachments/assets/c5ff3885-0840-4f11-b60e-88882e7e4615" />
 
 ### 💲 Currency Exchange 
-<img width="1918" height="875" alt="currency exchange" src="https://github.com/user-attachments/assets/55bc521b-e4e3-411a-93a2-419a391888a2" />
+<img width="378" height="814" alt="Currency exchange mobile view" src="https://github.com/user-attachments/assets/ebb7b7da-7819-4152-9833-9ef354b6e8a2" />
 
 ### 🌦️ Weather
-<img width="1918" height="876" alt="weather" src="https://github.com/user-attachments/assets/6f280b15-5bdf-4173-bc57-fd8eaa6771e6" />
+<img width="378" height="816" alt="Weather mobile view" src="https://github.com/user-attachments/assets/62974568-1d25-4bb1-9520-d405980163cf" />
 
 ---
