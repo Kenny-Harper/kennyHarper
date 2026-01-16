@@ -1,6 +1,6 @@
 <?php
 // api/exchange.php - returns a list of rates for dropdown, with selectable base (default USD)
-include('../config.php');
+require_once __DIR__ . '/config.php';
 header('Content-Type: application/json');
 
 function logMessage($message) {
@@ -78,7 +78,7 @@ if (!isset($currencyNames[$base])) {
   $currencyNames[$base] = $base;
 }
 
-$access_key = '602b162a5db3c67ae85cdfd7fbd9da31';
+$access_key = OPENEXCHANGE_API_KEY;
 
 // Request EUR-base rates including BASE + all dropdown currencies
 $symbols = array_keys($currencyNames);
