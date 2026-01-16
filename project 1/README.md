@@ -193,7 +193,7 @@ Gazetteer/
 
 🔗 Live Demo:
 
-https://kennyharper.wuaze.com/project1/
+[https://kennyharper.wuaze.com/project1/](https://kennyharper.co.uk/project1/)
 
 No local setup is required.
 
