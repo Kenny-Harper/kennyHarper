@@ -1,5 +1,5 @@
 <?php
-include('../config.php');
+require_once __DIR__ . '/config.php';
 
 function logMessage($message) {
     $logfile = __DIR__ . '/../logs/api_log.txt';
