@@ -1,6 +1,6 @@
 <?php
 
-    include('../config.php');
+require_once __DIR__ . '/config.php';
 
     function logMessage($message) {
         $logfile = __DIR__ . '/../logs/api_log.txt';
@@ -20,7 +20,7 @@
 
 	$executionStartTime = microtime(true);
 
-	$url='https://api.opencagedata.com/geocode/v1/json?q='.$_REQUEST['lat'].',+'.$_REQUEST['lng'].'&key=de78f40fbb6540b5b75b6cb4c8969b7e&language=en&pretty=1';
+	$url='https://api.opencagedata.com/geocode/v1/json?q='.$_REQUEST['lat'].',+'.$_REQUEST['lng'].'&key='.OPENCAGE_API_KEY.'&language=en&pretty=1';
 
 
 	$ch = curl_init();
