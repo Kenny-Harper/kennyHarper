@@ -213,7 +213,7 @@ No local setup is required.
 <img width="376" height="812" alt="Wiki mobile view" src="https://github.com/user-attachments/assets/b2de51f8-ce0f-4923-b6dd-f52d8d023030" />
 
 ### 📰 News Feed
-<img width="376" height="814" alt="News mobile view" src="https://github.com/user-attachments/assets/c5ff3885-0840-4f11-b60e-88882e7e4615" />
+<img width="377" height="815" alt="news mobile view updated" src="https://github.com/user-attachments/assets/da0ef73b-0866-4e20-803b-af70e81d5546" />
 
 ### 💲 Currency Exchange 
 <img width="378" height="814" alt="Currency exchange mobile view" src="https://github.com/user-attachments/assets/ebb7b7da-7819-4152-9833-9ef354b6e8a2" />
