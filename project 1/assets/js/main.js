@@ -1,10 +1,5 @@
 $(document).ready(function () {
   console.log('Gazetteer loaded.');
-    
-    // Hide InfinityFree cache-buster query (?i=1) without reloading
-if (window.location.search === '?i=1') {
-  history.replaceState(null, '', window.location.pathname);
-}
 
   // ✅ Stop Chrome "Blocked aria-hidden..." warning by managing focus on show/hide
 const returnFocusMap = new WeakMap();
