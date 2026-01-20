@@ -83,7 +83,7 @@ XAMPP (localhost development environment)
 
 ## 📁 Project Structure
 
-CompanyDirectory-submission/
+CompanyDirectory-submission.zip/
 │
 ├── companydirectory/                  # PHP backend API (server-side)
 │   ├── config.php
