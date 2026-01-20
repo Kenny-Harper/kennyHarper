@@ -115,9 +115,11 @@ CompanyDirectory/
 
 ## How to Run Locally
 1. Install and run **XAMPP**
-2. Place the backend folder inside:
+2. Extract the attached zip file:
+   - `companydirectory-submission.zip`
+3. Place the backend folder inside:
    - `htdocs/companydirectory/`
-3. Open the UI in your browser:
+4. Open the UI in your browser:
    - `http://localhost/companydirectory-ui/`
 
 Make sure Apache and MySQL are running in XAMPP.
