@@ -24,7 +24,12 @@ Designed as a modern **geographic information tool**, it allows users to explore
 
 ---
 
-## 📌 Project 2
-(Coming soon)
+## 📌 Project 2: Company Directory
+
+A responsive, web-based **Company Directory application** that allows users to manage Personnel, Departments, and Locations within a company.
+
+The system supports full CRUD functionality using a clean tab-based interface with **Bootstrap modals**, **plus search** and **filtering** to quickly find employees by **department** or **location**.
+
+Built with a **PHP + MySQL** backend and a dynamic **JavaScript (jQuery/AJAX) frontend**, ensuring data stays up to date while protecting database integrity by preventing deletion of records with dependencies.
 
 ---
