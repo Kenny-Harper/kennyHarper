@@ -127,16 +127,21 @@ Make sure Apache and MySQL are running in XAMPP.
 ## 📸 Screenshots
 
 ### 👥 Personnel Table
-(Add screenshot here)
+<img width="1918" height="910" alt="Personnel ss" src="https://github.com/user-attachments/assets/7bd9a5e3-88e2-427c-9fed-17e6b48ff7c9" />
+
 
 ### 🏢 Departments Tab
-(Add screenshot here)
+<img width="1918" height="908" alt="Department ss" src="https://github.com/user-attachments/assets/099c6a32-6e4c-4d6a-a8ec-f601f102e4d4" />
+
 
 ### 📍 Locations Tab
-(Add screenshot here)
+<img width="1919" height="909" alt="location ss" src="https://github.com/user-attachments/assets/6cb02a61-0552-4cbf-885c-099ea119f051" />
+
 
 ### 🎛️ Filter Modal
-(Add screenshot here)
+<img width="1917" height="910" alt="Filter " src="https://github.com/user-attachments/assets/8997dfa2-a417-4aab-bbf1-b87dc7044f7f" />
+<img width="1918" height="911" alt="Filter 1 ss" src="https://github.com/user-attachments/assets/b89b2f45-1e11-4074-a702-4429e266d451" />
+<img width="1919" height="912" alt="Filter 2 ss" src="https://github.com/user-attachments/assets/a9015990-d085-42df-8567-7c28b52f6d9c" />
 
 ---
 
