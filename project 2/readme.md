@@ -83,7 +83,7 @@ XAMPP (localhost development environment)
 
 ## 📁 Project Structure
 
-CompanyDirectory/
+CompanyDirectory-submission/
 │
 ├── companydirectory/                  # PHP backend API (server-side)
 │   ├── config.php
@@ -117,10 +117,12 @@ CompanyDirectory/
 1. Install and run **XAMPP**
 2. Extract the attached zip file:
    - `companydirectory-submission.zip`
-3. Place the backend folder inside:
-   - `htdocs/companydirectory/`
-4. Open the UI in your browser:
-   - `http://localhost/companydirectory-ui/`
+3. Place the extracted folder inside your XAMPP `htdocs` directory:
+
+   **To:**
+   - `xampp/htdocs/companydirectory-submission/`
+4. Open the project in your browser:
+   - `http://localhost/companydirectory-submission/companydirectory-ui/`
 
 Make sure Apache and MySQL are running in XAMPP.
 
