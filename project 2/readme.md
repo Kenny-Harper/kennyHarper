@@ -107,8 +107,7 @@ CompanyDirectory-submission/
 └── companydirectory-ui/               # Frontend UI (client-side)
     ├── index.html
     ├── style.css
-    ├── script.js
-    └── assets/
+    └── script.js
 
 ---
 
