@@ -83,46 +83,42 @@ XAMPP (localhost development environment)
 
 ## 📁 Project Structure
 
-CompanyDirectory-submission.zip/
+project2/
 │
-├── companydirectory/                  # PHP backend API (server-side)
-│   ├── config.php
-│   ├── getAll.php
-│   ├── searchAll.php
-│   ├── getAllDepartments.php
-│   ├── getAllLocations.php
-│   ├── getPersonnelByID.php
-│   ├── getDepartmentByID.php
-│   ├── getLocationByID.php
-│   ├── insertPersonnel.php
-│   ├── insertDepartment.php
-│   ├── insertLocation.php
-│   ├── updatePersonnelByID.php
-│   ├── updateDepartmentByID.php
-│   ├── updateLocationByID.php
-│   ├── deletePersonnelByID.php
-│   ├── deleteDepartmentByID.php
-│   └── deleteLocationByID.php
+├── index.html                 # Frontend UI
+├── style.css                  # Frontend styling
+├── script.js                  # Frontend logic (AJAX calls)
 │
-└── companydirectory-ui/               # Frontend UI (client-side)
-    ├── index.html
-    ├── style.css
-    └── script.js
+└── companydirectory/          # PHP backend API (server-side)
+    ├── config.php
+    ├── getAll.php
+    ├── searchAll.php
+    ├── getAllDepartments.php
+    ├── getAllLocations.php
+    ├── getPersonnelByID.php
+    ├── getDepartmentByID.php
+    ├── getLocationByID.php
+    ├── insertPersonnel.php
+    ├── insertDepartment.php
+    ├── insertLocation.php
+    ├── updatePersonnelByID.php
+    ├── updateDepartmentByID.php
+    ├── updateLocationByID.php
+    ├── deletePersonnelByID.php
+    ├── deleteDepartmentByID.php
+    └── deleteLocationByID.php
+
 
 ---
 
-## How to Run Locally
-1. Install and run **XAMPP**
-2. Extract the attached zip file:
-   - `companydirectory-submission.zip`
-3. Place the extracted folder inside your XAMPP `htdocs` directory:
+## 🌐 How to View the Live Project
 
-   **To:**
-   - `xampp/htdocs/companydirectory-submission/`
-4. Open the project in your browser:
-   - `http://localhost/companydirectory-submission/companydirectory-ui/`
+This project is hosted online and can be accessed here:
 
-Make sure Apache and MySQL are running in XAMPP.
+🔗 Live Demo:
+https://kennyharper.co.uk/project2/
+
+No local setup is required.
 
 ---
 
