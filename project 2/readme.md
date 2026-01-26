@@ -85,14 +85,33 @@ XAMPP (localhost development environment)
 
 project2/
 │
-├── index.html                 # Frontend UI
-├── style.css                  # Frontend styling
-├── script.js                  # Frontend logic (AJAX calls)
+├── index.html                     # Frontend UI
+├── style.css                      # Frontend styling
+├── script.js                      # Frontend logic (AJAX calls)
+├── favicon.ico                    # Site favicon
+├── companydirectory.sql           # Database export / schema
 │
-└── companydirectory/          # PHP backend API (server-side)
+├── vendor/                        # Local libraries (NO CDNs)
+│   ├── bootstrap/
+│   │   ├── bootstrap.min.css
+│   │   └── bootstrap.bundle.min.js
+│   │
+│   ├── jquery/
+│   │   └── jquery.min.js
+│   │
+│   └── fontawesome/
+│       ├── css/
+│       │   └── all.min.css
+│       └── webfonts/
+│           ├── fa-brands-400.woff2
+│           ├── fa-regular-400.woff2
+│           ├── fa-solid-900.woff2
+│           └── fa-v4compatibility.woff2
+│
+└── companydirectory/              # PHP backend API (server-side)
     ├── config.php
     ├── getAll.php
-    ├── searchAll.php
+    ├── SearchAll.php
     ├── getAllDepartments.php
     ├── getAllLocations.php
     ├── getPersonnelByID.php
@@ -106,7 +125,9 @@ project2/
     ├── updateLocationByID.php
     ├── deletePersonnelByID.php
     ├── deleteDepartmentByID.php
-    └── deleteLocationByID.php
+    ├── deleteLocationByID.php
+    ├── checkDepartmentUse.php
+    └── checkLocationUse.php
 
 
 ---
