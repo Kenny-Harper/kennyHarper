@@ -8,64 +8,81 @@ require __DIR__ . '/PHPMailer/src/SMTP.php';
 
 header('Content-Type: text/plain; charset=utf-8');
 
-// if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-//   http_response_code(405);
-//   echo "Method Not Allowed";
-//   exit;
-// }
+// Only allow POST
+if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+  http_response_code(405);
+  echo "Method Not Allowed";
+  exit;
+}
 
-$name    = trim($_REQUEST["name"] ?? "");
-$email   = trim($_REQUEST["email"] ?? "");
-$subject = trim($_REQUEST["subject"] ?? "");
-$message = trim($_REQUEST["message"] ?? "");
+// Load secrets from a server-only config file (NOT committed to GitHub)
+// Option A (recommended): outside public web root (edit this path to match your host)
+$configPath = __DIR__ . '/../../../private/mail_config.php';
 
-if ($name === "" || $email === "" || $subject === "" || $message === "") {
+// Option B (if you must keep config under public_html):
+// $configPath = __DIR__ . '/config/mail_config.php';
+
+if (!file_exists($configPath)) {
+  http_response_code(500);
+  echo "Server misconfiguration (missing mail config).";
+  exit;
+}
+$config = require $configPath;
+
+// Read inputs (use POST)
+$name    = trim($_POST['name'] ?? '');
+$email   = trim($_POST['email'] ?? '');
+$subject = trim($_POST['subject'] ?? '');
+$message = trim($_POST['message'] ?? '');
+
+// Basic validation
+if ($name === '' || $email === '' || $subject === '' || $message === '') {
   http_response_code(400);
   echo "Please fill in all fields.";
   exit;
 }
-
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   http_response_code(400);
   echo "Invalid email address.";
   exit;
 }
+// Prevent header injection
+if (preg_match("/[\r\n]/", $email)) {
+  http_response_code(400);
+  echo "Invalid email address.";
+  exit;
+}
 
-// ---- LOG FILE (so we can see what happened even if the page hides it)
-$logFile = __DIR__ . '/mail_debug.log';
-file_put_contents($logFile, "\n---- " . date('Y-m-d H:i:s') . " ----\n", FILE_APPEND);
+// Simple length limits (avoid abuse)
+if (strlen($name) > 100 || strlen($subject) > 150 || strlen($message) > 5000) {
+  http_response_code(400);
+  echo "Message too long.";
+  exit;
+}
 
 $mail = new PHPMailer(true);
 
-$mail->SMTPOptions = array(
-    'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-    )
-); 
-
 try {
   $mail->isSMTP();
-  $mail->Host       = 'smtp.gmail.com';
+  $mail->Host       = $config['host'];
   $mail->SMTPAuth   = true;
-  $mail->Username   = '';
+  $mail->Username   = $config['username'];
+  $mail->Password   = $config['password'];
 
-  // IMPORTANT: app password with NO spaces
-  $mail->Password   = '';
+  // SSL for 465, TLS for 587
+  if (($config['secure'] ?? '') === 'ssl') {
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+  } else {
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+  }
+  $mail->Port = (int)$config['port'];
 
-  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-  $mail->Port       = 465;
+  // IMPORTANT: keep verification ON in production
+  // (Do NOT disable verify_peer / allow_self_signed unless you truly have to)
 
-  // Debug output goes to log file
-  $mail->SMTPDebug = 2;
-  $mail->Debugoutput = function($str, $level) use ($logFile) {
-    file_put_contents($logFile, "DEBUG[$level]: $str\n", FILE_APPEND);
-  };
-
-  $mail->setFrom('kennyharper02@gmail.com', 'Portfolio Contact');
+  $mail->setFrom($config['from_email'], $config['from_name']);
+  $mail->addAddress($config['to_email']);
   $mail->addReplyTo($email, $name);
-  $mail->addAddress('kennyharper02@gmail.com');
 
   $mail->isHTML(false);
   $mail->Subject = 'Portfolio Contact: ' . $subject;
@@ -75,12 +92,15 @@ try {
     "Email: {$email}\n\n" .
     "Message:\n{$message}\n";
 
-  $mail->send();
+  // No debug output in production
+  $mail->SMTPDebug = 0;
 
+  $mail->send();
   echo "OK";
+
 } catch (Exception $e) {
+  // Log server-side only; don’t reveal SMTP details to visitors
+  error_log("Mailer Error: " . $mail->ErrorInfo);
   http_response_code(500);
-  $msg = "Mailer Error: " . $mail->ErrorInfo;
-  file_put_contents($logFile, $msg . "\n", FILE_APPEND);
-  echo $msg;
+  echo "ERROR";
 }
