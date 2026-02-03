@@ -82,11 +82,6 @@ portfolio/
 │ └── PHPMailer/ # PHPMailer library
 │
 ├── index.html
-├── portfolio-details.html
-├── portfolio-details-companydirectory.html
-├── portfolio-details-gazetteer.html
-├── service-details.html
-├── starter-page.html
 └── README.md
 
 
