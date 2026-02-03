@@ -40,7 +40,7 @@ The project integrates multiple data sources to display **weather**, **news**, *
 Data is retrieved via a custom **PHP backend** and several **external APIs**, allowing users to explore countries visually and access live information on demand.
 
 🔗 **Live project:**  
-https://kennyharper.co.uk/gazetteer/
+https://kennyharper.co.uk/project1/
 
 🔗 **Source code:**  
 https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
@@ -55,7 +55,7 @@ The system supports full **CRUD functionality** using **Bootstrap modals**, alon
 Built with a **PHP + MySQL backend** and a dynamic **JavaScript (jQuery/AJAX) frontend**, the application ensures data consistency while preventing the deletion of records that have active dependencies.
 
 🔗 **Live project:**  
-https://kennyharper.co.uk/companydirectory/
+https://kennyharper.co.uk/project2/
 
 🔗 **Source code:**  
 https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
