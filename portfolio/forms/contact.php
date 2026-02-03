@@ -49,7 +49,7 @@ try {
   $mail->isSMTP();
   $mail->Host       = 'smtp.gmail.com';
   $mail->SMTPAuth   = true;
-  $mail->Username   = 'kennyharper02@gmail.com';
+  $mail->Username   = '';
 
   // IMPORTANT: app password with NO spaces
   $mail->Password   = '';
