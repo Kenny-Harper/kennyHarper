@@ -45,6 +45,10 @@ https://kennyharper.co.uk/project1/
 🔗 **Source code:**  
 https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
 
+**Screenshots:**
+![Gazetteer (Desktop)](assets/img/portfolio/gazetteer-desktop.png)
+![Gazetteer (Mobile)](assets/img/portfolio/Gazetteer-mobile.png)
+
 ---
 
 ### Company Directory
@@ -59,6 +63,10 @@ https://kennyharper.co.uk/project2/
 
 🔗 **Source code:**  
 https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
+
+**Screenshots:**
+![Company Directory (Desktop)](assets/img/portfolio/companydirectory-desktop.png)
+![Company Directory (Mobile)](assets/img/portfolio/Companydirectory-mobile.png)
 
 ---
 
