@@ -39,12 +39,6 @@ The project integrates multiple data sources to display **weather**, **news**, *
 
 Data is retrieved via a custom **PHP backend** and several **external APIs**, allowing users to explore countries visually and access live information on demand.
 
-🔗 **Live project:**  
-https://kennyharper.co.uk/gazetteer/
-
-🔗 **Source code:**  
-https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
-
 **Key skills demonstrated:**
 - API integration and data aggregation
 - PHP backend development
@@ -52,6 +46,12 @@ https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
 - JavaScript-driven UI interactions
 - Data parsing and validation
 - User-focused interface design
+
+🔗 **Live project:**  
+https://kennyharper.co.uk/gazetteer/
+
+🔗 **Source code:**  
+https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
 
 ---
 
@@ -62,12 +62,6 @@ The system supports full **CRUD functionality** using **Bootstrap modals**, alon
 
 Built with a **PHP + MySQL backend** and a dynamic **JavaScript (jQuery/AJAX) frontend**, the application ensures data consistency while preventing the deletion of records that have active dependencies.
 
-🔗 **Live project:**  
-https://kennyharper.co.uk/companydirectory/
-
-🔗 **Source code:**  
-https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
-
 **Key skills demonstrated:**
 - CRUD application design
 - Relational database management (MySQL)
@@ -75,6 +69,12 @@ https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
 - AJAX-based frontend communication
 - UI/UX design with Bootstrap modals
 - Defensive programming to prevent invalid deletes
+
+🔗 **Live project:**  
+https://kennyharper.co.uk/companydirectory/
+
+🔗 **Source code:**  
+https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
 
 ---
 
