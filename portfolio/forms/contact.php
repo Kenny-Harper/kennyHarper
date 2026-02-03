@@ -52,7 +52,7 @@ try {
   $mail->Username   = 'kennyharper02@gmail.com';
 
   // IMPORTANT: app password with NO spaces
-  $mail->Password   = 'vjrvwtvnipisckcc';
+  $mail->Password   = '';
 
   $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
   $mail->Port       = 465;
