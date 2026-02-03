@@ -1,0 +1,483 @@
+
+---- 2026-01-29 19:13:59 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-4806ce5ec6bsm157827985e9.15 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:14:28 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-4806ce5ec6bsm157853285e9.15 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:16:28 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-4806cd8fadfsm143187325e9.0 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:27:52 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e10e490esm15724801f8f.9 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:33:40 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e1322dc7sm16060477f8f.37 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:38:16 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e10ee057sm17921293f8f.15 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:40:02 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-481a5d3f851sm3583775e9.2 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:40:03 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e10e4757sm16819926f8f.5 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:51:35 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e10e476dsm16256588f8f.4 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-29 19:52:47 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-48066be7404sm239984275e9.1 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:216c:7a4c:5b59:e315]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-30 18:02:28 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e10e483asm22462682f8f.3 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:871:a5de:9c7b:fe7]
+250-SIZE 35882577
+250-8BITMIME
+250-STARTTLS
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: STARTTLS
+
+DEBUG[2]: SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 
+DEBUG[1]: SMTP ERROR: QUIT command failed: 
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed
+Mailer Error: SMTP Error: Could not connect to SMTP host. Connection failed. stream_socket_enable_crypto(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A000086:SSL routines::certificate verify failed SMTP server error: QUIT command failed
+
+---- 2026-01-30 18:04:42 ----
+DEBUG[1]: SMTP ERROR: Failed to connect to server:  (0)
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+Mailer Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server
+
+---- 2026-01-30 18:06:09 ----
+DEBUG[1]: SMTP ERROR: Failed to connect to server:  (0)
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+Mailer Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server
+
+---- 2026-01-30 18:06:14 ----
+DEBUG[1]: SMTP ERROR: Failed to connect to server:  (0)
+DEBUG[2]: SMTP Error: Could not connect to SMTP host. Failed to connect to server
+Mailer Error: SMTP Error: Could not connect to SMTP host. Failed to connect to server SMTP server error: Failed to connect to server
+
+---- 2026-01-30 18:10:28 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP ffacd0b85a97d-435e131cfd4sm22778807f8f.25 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:871:a5de:9c7b:fe7]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: AUTH LOGIN
+
+DEBUG[2]: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+DEBUG[1]: CLIENT -> SERVER: [credentials hidden]
+DEBUG[2]: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+DEBUG[1]: CLIENT -> SERVER: [credentials hidden]
+DEBUG[2]: SERVER -> CLIENT: 235 2.7.0 Accepted
+
+DEBUG[1]: CLIENT -> SERVER: MAIL FROM:<kennyharper02@gmail.com>
+
+DEBUG[2]: SERVER -> CLIENT: 250 2.1.0 OK ffacd0b85a97d-435e131cfd4sm22778807f8f.25 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: RCPT TO:<kennyharper02@gmail.com>
+
+DEBUG[2]: SERVER -> CLIENT: 250 2.1.5 OK ffacd0b85a97d-435e131cfd4sm22778807f8f.25 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: DATA
+
+DEBUG[2]: SERVER -> CLIENT: 354 Go ahead ffacd0b85a97d-435e131cfd4sm22778807f8f.25 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: Date: Fri, 30 Jan 2026 18:10:28 +0100
+
+DEBUG[1]: CLIENT -> SERVER: To: kennyharper02@gmail.com
+
+DEBUG[1]: CLIENT -> SERVER: From: Portfolio Contact <kennyharper02@gmail.com>
+
+DEBUG[1]: CLIENT -> SERVER: Reply-To: test <m@m.co.uk>
+
+DEBUG[1]: CLIENT -> SERVER: Subject: Portfolio Contact: test
+
+DEBUG[1]: CLIENT -> SERVER: Message-ID: <h8ZhrkMLJR5vfiZ7zn0Z9MxUC62xK1VodWik1jkJU@localhost>
+
+DEBUG[1]: CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.2 (https://github.com/PHPMailer/PHPMailer)
+
+DEBUG[1]: CLIENT -> SERVER: MIME-Version: 1.0
+
+DEBUG[1]: CLIENT -> SERVER: Content-Type: text/plain; charset=iso-8859-1
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: You have a new message from your portfolio site.
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: Name: test
+
+DEBUG[1]: CLIENT -> SERVER: Email: m@m.co.uk
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: Message:
+
+DEBUG[1]: CLIENT -> SERVER: gggggg
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: .
+
+DEBUG[2]: SERVER -> CLIENT: 250 2.0.0 OK  1769793030 ffacd0b85a97d-435e131cfd4sm22778807f8f.25 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 221 2.0.0 closing connection ffacd0b85a97d-435e131cfd4sm22778807f8f.25 - gsmtp
+
+
+---- 2026-01-30 18:14:15 ----
+DEBUG[2]: SERVER -> CLIENT: 220 smtp.gmail.com ESMTP 5b1f17b1804b1-482da8eb486sm30950445e9.2 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: EHLO localhost
+
+DEBUG[2]: SERVER -> CLIENT: 250-smtp.gmail.com at your service, [2a02:c7c:5a4d:cd00:871:a5de:9c7b:fe7]
+250-SIZE 35882577
+250-8BITMIME
+250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250 SMTPUTF8
+
+DEBUG[1]: CLIENT -> SERVER: AUTH LOGIN
+
+DEBUG[2]: SERVER -> CLIENT: 334 VXNlcm5hbWU6
+
+DEBUG[1]: CLIENT -> SERVER: [credentials hidden]
+DEBUG[2]: SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+
+DEBUG[1]: CLIENT -> SERVER: [credentials hidden]
+DEBUG[2]: SERVER -> CLIENT: 235 2.7.0 Accepted
+
+DEBUG[1]: CLIENT -> SERVER: MAIL FROM:<kennyharper02@gmail.com>
+
+DEBUG[2]: SERVER -> CLIENT: 250 2.1.0 OK 5b1f17b1804b1-482da8eb486sm30950445e9.2 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: RCPT TO:<kennyharper02@gmail.com>
+
+DEBUG[2]: SERVER -> CLIENT: 250 2.1.5 OK 5b1f17b1804b1-482da8eb486sm30950445e9.2 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: DATA
+
+DEBUG[2]: SERVER -> CLIENT: 354 Go ahead 5b1f17b1804b1-482da8eb486sm30950445e9.2 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: Date: Fri, 30 Jan 2026 18:14:15 +0100
+
+DEBUG[1]: CLIENT -> SERVER: To: kennyharper02@gmail.com
+
+DEBUG[1]: CLIENT -> SERVER: From: Portfolio Contact <kennyharper02@gmail.com>
+
+DEBUG[1]: CLIENT -> SERVER: Reply-To: John <kenny_h12@outlook.com>
+
+DEBUG[1]: CLIENT -> SERVER: Subject: Portfolio Contact: Work
+
+DEBUG[1]: CLIENT -> SERVER: Message-ID: <wYz9ez3bS6O4eSAZMe4sx4wJIIkdhrXflXl0YDjLE@localhost>
+
+DEBUG[1]: CLIENT -> SERVER: X-Mailer: PHPMailer 7.0.2 (https://github.com/PHPMailer/PHPMailer)
+
+DEBUG[1]: CLIENT -> SERVER: MIME-Version: 1.0
+
+DEBUG[1]: CLIENT -> SERVER: Content-Type: text/plain; charset=iso-8859-1
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: You have a new message from your portfolio site.
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: Name: John
+
+DEBUG[1]: CLIENT -> SERVER: Email: kenny_h12@outlook.com
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: Message:
+
+DEBUG[1]: CLIENT -> SERVER: Lets do something together
+
+DEBUG[1]: CLIENT -> SERVER: 
+
+DEBUG[1]: CLIENT -> SERVER: .
+
+DEBUG[2]: SERVER -> CLIENT: 250 2.0.0 OK  1769793256 5b1f17b1804b1-482da8eb486sm30950445e9.2 - gsmtp
+
+DEBUG[1]: CLIENT -> SERVER: QUIT
+
+DEBUG[2]: SERVER -> CLIENT: 221 2.0.0 closing connection 5b1f17b1804b1-482da8eb486sm30950445e9.2 - gsmtp
+
