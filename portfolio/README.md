@@ -39,14 +39,6 @@ The project integrates multiple data sources to display **weather**, **news**, *
 
 Data is retrieved via a custom **PHP backend** and several **external APIs**, allowing users to explore countries visually and access live information on demand.
 
-**Key skills demonstrated:**
-- API integration and data aggregation
-- PHP backend development
-- Asynchronous data handling (AJAX)
-- JavaScript-driven UI interactions
-- Data parsing and validation
-- User-focused interface design
-
 🔗 **Live project:**  
 https://kennyharper.co.uk/gazetteer/
 
@@ -61,14 +53,6 @@ A responsive, web-based **Company Directory application** designed to manage **P
 The system supports full **CRUD functionality** using **Bootstrap modals**, alongside **search** and **filtering** features to quickly locate employees by department or location.
 
 Built with a **PHP + MySQL backend** and a dynamic **JavaScript (jQuery/AJAX) frontend**, the application ensures data consistency while preventing the deletion of records that have active dependencies.
-
-**Key skills demonstrated:**
-- CRUD application design
-- Relational database management (MySQL)
-- Backend validation and data integrity
-- AJAX-based frontend communication
-- UI/UX design with Bootstrap modals
-- Defensive programming to prevent invalid deletes
 
 🔗 **Live project:**  
 https://kennyharper.co.uk/companydirectory/
