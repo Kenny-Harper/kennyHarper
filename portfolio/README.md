@@ -45,6 +45,14 @@ https://kennyharper.co.uk/gazetteer/
 🔗 **Source code:**  
 https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
 
+**Key skills demonstrated:**
+- API integration and data aggregation
+- PHP backend development
+- Asynchronous data handling (AJAX)
+- JavaScript-driven UI interactions
+- Data parsing and validation
+- User-focused interface design
+
 ---
 
 ### Company Directory
@@ -59,6 +67,14 @@ https://kennyharper.co.uk/companydirectory/
 
 🔗 **Source code:**  
 https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
+
+**Key skills demonstrated:**
+- CRUD application design
+- Relational database management (MySQL)
+- Backend validation and data integrity
+- AJAX-based frontend communication
+- UI/UX design with Bootstrap modals
+- Defensive programming to prevent invalid deletes
 
 ---
 
