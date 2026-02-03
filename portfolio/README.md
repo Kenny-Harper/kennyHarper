@@ -39,6 +39,12 @@ The project integrates multiple data sources to display **weather**, **news**, *
 
 Data is retrieved via a custom **PHP backend** and several **external APIs**, allowing users to explore countries visually and access live information on demand.
 
+🔗 **Live project:**  
+https://kennyharper.co.uk/gazetteer/
+
+🔗 **Source code:**  
+https://github.com/Kenny-Harper/kennyHarper/tree/main/project%201
+
 ---
 
 ### Company Directory
@@ -47,6 +53,12 @@ A responsive, web-based **Company Directory application** designed to manage **P
 The system supports full **CRUD functionality** using **Bootstrap modals**, alongside **search** and **filtering** features to quickly locate employees by department or location.
 
 Built with a **PHP + MySQL backend** and a dynamic **JavaScript (jQuery/AJAX) frontend**, the application ensures data consistency while preventing the deletion of records that have active dependencies.
+
+🔗 **Live project:**  
+https://kennyharper.co.uk/companydirectory/
+
+🔗 **Source code:**  
+https://github.com/Kenny-Harper/kennyHarper/tree/main/project%202
 
 ---
 
@@ -87,7 +99,7 @@ https://kennyharper.co.uk/portfolio/
 
 ## 🔒 Contact Form Notes
 - Email credentials are **not stored** in this repository  
-- `contact.php.example` is provided as a reference template only  
+- `contact.php.example` is provided as a reference template  
 - The live server uses a separate, secure configuration outside version control
 
 ---
